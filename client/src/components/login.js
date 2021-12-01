@@ -23,6 +23,7 @@ export const Login = () => {
         if (data.success) {
           localStorage.setItem("auth_token", data.token);
           navigate("/");
+          window.location.reload(false);
         }
         if (data.msg) {
           document.getElementById("errors").innerHTML = data.msg;

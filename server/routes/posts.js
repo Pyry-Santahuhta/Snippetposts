@@ -17,6 +17,7 @@ router.post("/", validateToken, function (req, res, next) {
     user: req.user.email,
     content: req.body.content,
     likes: 0,
+    timestamp: Date(),
     comments: null,
   });
   Post.addPost(newPost, (err, post) => {

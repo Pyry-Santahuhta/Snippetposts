@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
 import PostForm from "./postForm";
+import { PostList } from "./postList";
 
 export const dashboard = () => {
   return (
     <Fragment>
-      <div>Users posts</div>
+      <PostList></PostList>
       <PostForm></PostForm>
     </Fragment>
   );
