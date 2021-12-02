@@ -9,7 +9,6 @@ import Nav from "./components/nav";
 function App() {
   return (
     <div className="App">
-      <h1>Stäkoverflou</h1>
       <Nav></Nav>
       <Routes>
         <Route path="/" element={<Dashboard />}></Route>

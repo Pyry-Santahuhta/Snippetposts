@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import PostForm from "./postForm";
-import { PostList } from "./postList";
+import FetchPosts from "./fetchPosts";
 
 export const dashboard = () => {
   return (
     <Fragment>
-      <PostList></PostList>
+      <FetchPosts></FetchPosts>
       <PostForm></PostForm>
     </Fragment>
   );

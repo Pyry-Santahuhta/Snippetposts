@@ -31,7 +31,7 @@ export const Register = () => {
   return (
     <Fragment>
       <h1>Register</h1>
-      <form id="login-form" onSubmit={handleSubmit}>
+      <form id="register-form" onSubmit={handleSubmit}>
         <label>
           Email:
           <input type="email" id="email" name="email" onChange={handleChange} />

@@ -33,10 +33,8 @@ router.post(
                 id: user._id,
                 email: user.email,
               };
-              //Sign token using the created payload and secret, expire time 8 hours
-              const jwtToken = jwt.sign(jwtPayload, `${process.env.SECRET}`, {
-                expiresIn: 28800,
-              });
+              //Sign token using the created payload and secret
+              const jwtToken = jwt.sign(jwtPayload, `${process.env.SECRET}`);
               res.json({
                 success: true,
                 token: jwtToken,

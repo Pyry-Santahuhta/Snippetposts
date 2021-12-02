@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { ButtonAppBar } from "./materialui/appbar";
 
 export const Nav = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   function handleLogoutClick() {
@@ -20,12 +21,7 @@ export const Nav = () => {
   } else {
     return (
       <div>
-        <Link to="login">
-          <button type="button">Login</button>
-        </Link>
-        <Link to="register">
-          <button type="button">Register</button>
-        </Link>
+        <ButtonAppBar></ButtonAppBar>
       </div>
     );
   }

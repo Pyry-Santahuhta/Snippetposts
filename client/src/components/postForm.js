@@ -12,7 +12,7 @@ export const PostForm = () => {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    if (authToken) {
+    if (authToken && post.content) {
       fetch("/posts/", {
         method: "POST",
         body: JSON.stringify(post),
@@ -25,6 +25,9 @@ export const PostForm = () => {
 
         document.getElementById("post-form").reset();
       });
+    } else {
+      document.getElementById("alertState").innerHTML =
+        "Write something first!";
     }
   }
   if (authToken) {
