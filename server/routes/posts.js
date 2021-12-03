@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-
+const getDateString = require("../toolfunctions/tools");
 const Post = require("../models/Post");
 const validateToken = require("../auth/validateToken.js");
 
@@ -17,7 +17,7 @@ router.post("/", validateToken, function (req, res, next) {
     user: req.user.email,
     content: req.body.content,
     likes: 0,
-    timestamp: Date(),
+    timestamp: getDateString.getDateString(),
     comments: null,
   });
   Post.addPost(newPost, (err, post) => {

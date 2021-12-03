@@ -1,5 +1,10 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./materialui/theme";
+
 const authToken = localStorage.getItem("auth_token");
 
 export const PostForm = () => {
@@ -32,24 +37,35 @@ export const PostForm = () => {
   }
   if (authToken) {
     return (
-      <Fragment>
+      <ThemeProvider theme={theme}>
         <form id="post-form" onSubmit={handleSubmit}>
           <label>
-            Write your code snippet here:
+            <h2>Write your code snippet here:</h2>
             <br />
-            <textarea
+            <TextField
               type="text"
               id="content"
               name="content"
               onChange={handleChange}
+              multiline
+              rows={8}
+              fullWidth
             />
           </label>
           <br />
 
-          <input type="submit" id="submit" value="Submit" />
+          <Button
+            type="submit"
+            id="submit"
+            value="Submit"
+            variant="contained"
+            color="primary"
+          >
+            Submit
+          </Button>
         </form>
         <div id="alertState"></div>
-      </Fragment>
+      </ThemeProvider>
     );
   } else {
     return <Fragment></Fragment>;
