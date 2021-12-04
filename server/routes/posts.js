@@ -16,6 +16,7 @@ router.post("/", validateToken, function (req, res, next) {
   let newPost = new Post({
     user: req.user.email,
     content: req.body.content,
+    topic: req.body.topic,
     likes: 0,
     timestamp: getDateString.getDateString(),
     comments: null,

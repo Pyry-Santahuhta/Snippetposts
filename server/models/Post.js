@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 let postSchema = new Schema(
   {
+    topic: { type: String, required: true },
     user: { type: String, required: true },
     content: { type: String, required: true },
     likes: { type: Number },

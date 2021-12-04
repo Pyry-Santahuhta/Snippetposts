@@ -23,7 +23,8 @@ export default class FetchPosts extends React.Component {
         },
       });
       const postData = await response.json();
-      this.setState({ posts: postData, loading: false });
+      if (postData.length > 0)
+        this.setState({ posts: postData, loading: false });
     }
   }
 
@@ -31,33 +32,32 @@ export default class FetchPosts extends React.Component {
     return (
       <div>
         {this.state.loading || !this.state.posts ? (
-          <div>Loading...</div>
+          <div>No posts found</div>
         ) : (
           <List sx={{ width: "100%", maxWidth: "100%", color: "secondary" }}>
             {this.state.posts.map((post, index) => {
               return (
                 <ThemeProvider theme={theme}>
                   <ListItem
+                    sx={{ display: "flex", flexDirection: "column" }}
                     alignItems="flex-start"
-                    sx={{ mb: 5, mt: 2 }}
                     key={index}
                   >
+                    <Typography variant="h5">{post.topic}</Typography>
                     <ListItemText
-                      sx={{ wordWrap: "break-word" }}
+                      sx={{ wordWrap: "break-word", display: "inline-block" }}
                       primary={post.content}
                       secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: "inline" }}
-                            component="span"
-                            variant="body2"
-                            color="black"
-                          >
-                            {post.user.substring(0, post.user.indexOf("@"))}
-                            <br></br>
-                            {post.timestamp}
-                          </Typography>
-                        </React.Fragment>
+                        <Typography
+                          sx={{ display: "inline-block" }}
+                          component="span"
+                          variant="body2"
+                          color="black"
+                        >
+                          {post.user.substring(0, post.user.indexOf("@"))}
+                          <br />
+                          {post.timestamp}
+                        </Typography>
                       }
                     />
                   </ListItem>

@@ -17,7 +17,7 @@ export const PostForm = () => {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    if (authToken && post.content) {
+    if (authToken && post.content && post.topic) {
       fetch("/posts/", {
         method: "POST",
         body: JSON.stringify(post),
@@ -27,8 +27,8 @@ export const PostForm = () => {
         },
       }).then((res) => {
         document.getElementById("alertState").innerHTML = "Success!";
-
         document.getElementById("post-form").reset();
+        window.location.reload(false);
       });
     } else {
       document.getElementById("alertState").innerHTML =
@@ -39,8 +39,20 @@ export const PostForm = () => {
     return (
       <ThemeProvider theme={theme}>
         <form id="post-form" onSubmit={handleSubmit}>
+          <h2>Post a new code snippet</h2>
           <label>
-            <h2>Write your code snippet here:</h2>
+            <h3>Topic:</h3>
+            <br />
+            <TextField
+              type="text"
+              id="topic"
+              name="topic"
+              onChange={handleChange}
+              fullWidth
+            />
+          </label>
+          <label>
+            <h3>Code:</h3>
             <br />
             <TextField
               type="text"

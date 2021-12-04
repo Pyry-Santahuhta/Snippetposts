@@ -10,7 +10,6 @@ export const dashboard = () => {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          mt: 14,
           pl: "5%",
           pr: "5%",
           display: "flex",
@@ -20,6 +19,7 @@ export const dashboard = () => {
       >
         <Box
           sx={{
+            mt: 3,
             width: "60%",
             maxWidth: "60%",
             display: "inline-block",
