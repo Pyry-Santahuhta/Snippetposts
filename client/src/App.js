@@ -4,12 +4,12 @@ import Login from "./components/login";
 import Register from "./components/register";
 import Dashboard from "./components/dashboard";
 import NotFound from "./components/notfound";
-import Nav from "./components/nav";
+import NavBar from "./components/navbar";
 
 function App() {
   return (
     <div className="App">
-      <Nav></Nav>
+      <NavBar></NavBar>
       <Routes>
         <Route path="/" element={<Dashboard />}></Route>
         <Route path="/login" element={<Login />}></Route>

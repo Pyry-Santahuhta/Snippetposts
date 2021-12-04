@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PostForm from "./postForm";
 import FetchPosts from "./fetchPosts";
 import Box from "@mui/material/Box";
