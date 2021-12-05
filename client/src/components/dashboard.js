@@ -24,6 +24,7 @@ export const dashboard = () => {
             maxWidth: "60%",
             display: "inline-block",
             mr: "40%",
+            textAlign: "start",
           }}
         >
           <FetchPosts></FetchPosts>

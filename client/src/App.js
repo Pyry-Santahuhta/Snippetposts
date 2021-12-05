@@ -5,11 +5,13 @@ import Register from "./components/register";
 import Dashboard from "./components/dashboard";
 import NotFound from "./components/notfound";
 import NavBar from "./components/navbar";
-import { PostDetails } from "./components/postdetails";
+import PostDetails from "./components/postdetails";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./components/materialui/theme";
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <NavBar />
       <Routes>
         <Route path="/" element={<Dashboard />}></Route>
@@ -18,7 +20,7 @@ function App() {
         <Route path="/Register" element={<Register />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-    </div>
+    </ThemeProvider>
   );
 }
 

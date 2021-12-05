@@ -10,7 +10,7 @@ let postSchema = new Schema(
     content: { type: String, required: true },
     likes: { type: Number },
     timestamp: { type: String, required: true },
-    comments: [{ user: String, comment: String }],
+    comments: [{ user: String, content: String, timestamp: String }],
   },
   { collection: "posts" }
 );

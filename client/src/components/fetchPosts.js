@@ -9,6 +9,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./materialui/theme";
 import Search from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import textAlign from "@mui/system";
 
 class FetchPostsClass extends React.Component {
   state = {
@@ -36,6 +38,7 @@ class FetchPostsClass extends React.Component {
         ) : (
           <ThemeProvider theme={theme}>
             <TextField
+              sx={{ width: "35%", mb: "10px" }}
               type="text"
               id="search"
               name="search"
@@ -70,7 +73,7 @@ class FetchPostsClass extends React.Component {
                         primary={post.content}
                         secondary={
                           <Typography
-                            sx={{ display: "inline-block" }}
+                            sx={{ display: "inline-block", mt: "10px" }}
                             component="span"
                             variant="body2"
                             color="secondary"

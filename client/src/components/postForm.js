@@ -41,22 +41,22 @@ export const PostForm = () => {
         <form id="post-form" onSubmit={handleSubmit}>
           <h2>Post a new code snippet</h2>
           <label>
-            <h3>Topic:</h3>
             <br />
             <TextField
               type="text"
               id="topic"
+              label="Topic"
               name="topic"
               onChange={handleChange}
               fullWidth
             />
           </label>
           <label>
-            <h3>Code:</h3>
             <br />
             <TextField
               type="text"
               id="content"
+              label="Code"
               name="content"
               onChange={handleChange}
               multiline
