@@ -23,7 +23,6 @@ export const dashboard = () => {
             width: "60%",
             maxWidth: "60%",
             display: "inline-block",
-            bgcolor: "primary.main",
             mr: "40%",
           }}
         >
@@ -34,8 +33,8 @@ export const dashboard = () => {
             width: "35%",
             maxWidth: "35%",
             display: "inline-block",
-            pl: "65%",
-            pr: "5%",
+            ml: "65%",
+            mr: "5%",
           }}
           position="fixed"
         >

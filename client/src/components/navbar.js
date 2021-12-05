@@ -67,7 +67,7 @@ export const NavBar = () => {
         </Box>
       ) : (
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="fixed">
+          <AppBar position="static">
             <Toolbar>
               <Grid
                 justify="space-between"

@@ -5,6 +5,7 @@ import Register from "./components/register";
 import Dashboard from "./components/dashboard";
 import NotFound from "./components/notfound";
 import NavBar from "./components/navbar";
+import { PostDetails } from "./components/postdetails";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Dashboard />}></Route>
+        <Route path="/posts/:id" element={<PostDetails />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/Register" element={<Register />}></Route>
         <Route path="*" element={<NotFound />}></Route>
