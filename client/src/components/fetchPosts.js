@@ -9,6 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./materialui/theme";
 import Search from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
+import Highlight from "react-highlight";
 
 class FetchPostsClass extends React.Component {
   state = {
@@ -55,7 +56,6 @@ class FetchPostsClass extends React.Component {
                         display: "flex",
                         flexDirection: "column",
                         bgcolor: "primary.light",
-                        color: "secondary",
                       }}
                       alignItems="flex-start"
                     >
@@ -68,13 +68,18 @@ class FetchPostsClass extends React.Component {
                       >
                         {post.topic}
                       </Typography>
+
                       <ListItemText
                         sx={{
-                          color: "secondary",
-                          wordWrap: "break-word",
                           display: "inline-block",
                         }}
-                        primary={post.content}
+                        primary={
+                          //<Highlight language="javascript">
+                          <Typography sx={{ wordWrap: "break-word" }}>
+                            {post.content}
+                          </Typography>
+                          //</Highlight>
+                        }
                         secondary={
                           <Typography
                             sx={{ display: "inline-block", mt: "10px" }}

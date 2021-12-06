@@ -43,10 +43,10 @@ class PostDetailsClass extends React.Component {
               }}
             >
               <Box sx={{ bgcolor: "primary.light", p: "50px" }}>
-                <Typography sx={{ color: "secondary.light" }} variant="h3">
-                  {post.topic}
+                <Typography variant="h3">{post.topic}</Typography>
+                <Typography sx={{ color: "secondary.dark", mt: "1%" }}>
+                  {post.content}
                 </Typography>
-                <Typography mt="1%">{post.content}</Typography>
                 <Typography mt="1%">
                   {post.user.substring(0, post.user.indexOf("@"))}
                 </Typography>
@@ -62,7 +62,12 @@ class PostDetailsClass extends React.Component {
                           </Typography>
                         </Grid>
                         <Grid container>
-                          <Grid item xs={1} color="secondary.main">
+                          <Grid
+                            item
+                            sx={{ fontStyle: "italic" }}
+                            xs={1}
+                            color="secondary.main"
+                          >
                             <Typography mt="1%">
                               {comment.user.substring(
                                 0,
