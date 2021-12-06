@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import { useState } from "react";
+import React, { Fragment, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
@@ -27,7 +26,7 @@ export const PostForm = () => {
         },
       }).then((res) => {
         document.getElementById("alertState").innerHTML = "Success!";
-        document.getElementById("post-form").reset();
+        document.getElementById("post-form").value = "";
         window.location.reload(false);
       });
     } else {

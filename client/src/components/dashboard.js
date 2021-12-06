@@ -10,8 +10,6 @@ export const dashboard = () => {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          pl: "5%",
-          pr: "5%",
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -19,23 +17,21 @@ export const dashboard = () => {
       >
         <Box
           sx={{
+            ml: "5%",
+            mr: "40%",
             mt: 3,
             width: "60%",
             maxWidth: "60%",
-            display: "inline-block",
-            mr: "40%",
-            textAlign: "start",
           }}
         >
           <FetchPosts></FetchPosts>
         </Box>
         <Box
           sx={{
+            mr: "5%",
             width: "35%",
             maxWidth: "35%",
-            display: "inline-block",
             ml: "65%",
-            mr: "5%",
           }}
           position="fixed"
         >

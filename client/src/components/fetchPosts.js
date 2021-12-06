@@ -9,8 +9,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./materialui/theme";
 import Search from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import textAlign from "@mui/system";
 
 class FetchPostsClass extends React.Component {
   state = {
@@ -44,19 +42,21 @@ class FetchPostsClass extends React.Component {
               name="search"
               label="Search"
               display="inline-block"
-              bgcolor="secondary"
               InputProps={{
                 endAdornment: <Search />,
               }}
             />
-            <List
-              sx={{ width: "100%", maxWidth: "100%", bgcolor: "primary.main" }}
-            >
+            <List sx={{ width: "100%", maxWidth: "100%" }}>
               {this.state.posts.map((post, index) => {
                 return (
                   <div key={index}>
                     <ListItem
-                      sx={{ display: "flex", flexDirection: "column" }}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        bgcolor: "primary.light",
+                        color: "secondary",
+                      }}
                       alignItems="flex-start"
                     >
                       <Typography
@@ -69,7 +69,11 @@ class FetchPostsClass extends React.Component {
                         {post.topic}
                       </Typography>
                       <ListItemText
-                        sx={{ wordWrap: "break-word", display: "inline-block" }}
+                        sx={{
+                          color: "secondary",
+                          wordWrap: "break-word",
+                          display: "inline-block",
+                        }}
                         primary={post.content}
                         secondary={
                           <Typography
@@ -85,7 +89,11 @@ class FetchPostsClass extends React.Component {
                         }
                       />
                     </ListItem>
-                    <Divider variant="inset" component="li" />
+                    <Divider
+                      variant="inset"
+                      component="li"
+                      sx={{ mb: "20px" }}
+                    />
                   </div>
                 );
               })}

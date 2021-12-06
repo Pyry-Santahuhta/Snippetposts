@@ -8,7 +8,7 @@ let postSchema = new Schema(
     topic: { type: String, required: true },
     user: { type: String, required: true },
     content: { type: String, required: true },
-    likes: { type: Number },
+    likes: { type: Number, required: true },
     timestamp: { type: String, required: true },
     comments: [{ user: String, content: String, timestamp: String }],
   },
