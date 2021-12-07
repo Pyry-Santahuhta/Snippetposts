@@ -10,6 +10,7 @@ import theme from "./materialui/theme";
 import Search from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import Highlight from "react-highlight";
+import useStyles from "./materialui/styles";
 
 class FetchPostsClass extends React.Component {
   state = {
@@ -29,6 +30,7 @@ class FetchPostsClass extends React.Component {
 
   render() {
     const { navigate } = this.props;
+    const { classes } = this.props;
 
     return (
       <div>
@@ -37,17 +39,15 @@ class FetchPostsClass extends React.Component {
         ) : (
           <ThemeProvider theme={theme}>
             <TextField
-              sx={{ width: "35%", mb: "10px" }}
+              className={classes.search}
               type="text"
-              id="search"
               name="search"
               label="Search"
-              display="inline-block"
               InputProps={{
                 endAdornment: <Search />,
               }}
             />
-            <List sx={{ width: "100%", maxWidth: "100%" }}>
+            <List>
               {this.state.posts.map((post, index) => {
                 return (
                   <div key={index}>
@@ -74,11 +74,9 @@ class FetchPostsClass extends React.Component {
                           display: "inline-block",
                         }}
                         primary={
-                          //<Highlight language="javascript">
-                          <Typography sx={{ wordWrap: "break-word" }}>
-                            {post.content}
-                          </Typography>
-                          //</Highlight>
+                          <Highlight>
+                            <Typography>{post.content}</Typography>
+                          </Highlight>
                         }
                         secondary={
                           <Typography
@@ -112,5 +110,6 @@ class FetchPostsClass extends React.Component {
 
 export default function FetchPosts(props) {
   const navigate = useNavigate();
-  return <FetchPostsClass {...props} navigate={navigate} />;
+  const classes = useStyles();
+  return <FetchPostsClass {...props} navigate={navigate} classes={classes} />;
 }

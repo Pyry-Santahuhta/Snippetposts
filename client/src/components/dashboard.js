@@ -4,39 +4,25 @@ import FetchPosts from "./fetchPosts";
 import Box from "@mui/material/Box";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./materialui/theme";
+import Grid from "@mui/material/Grid";
+import useStyles from "./materialui/styles";
 
 export const dashboard = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
+          flexGrow: 1,
         }}
       >
-        <Box
-          sx={{
-            ml: "5%",
-            mr: "40%",
-            mt: 3,
-            width: "60%",
-            maxWidth: "60%",
-          }}
-        >
-          <FetchPosts></FetchPosts>
-        </Box>
-        <Box
-          sx={{
-            mr: "5%",
-            width: "35%",
-            maxWidth: "35%",
-            ml: "65%",
-          }}
-          position="fixed"
-        >
-          <PostForm></PostForm>
-        </Box>
+        <Grid container spacing={1}>
+          <Grid item xs={7}>
+            <FetchPosts></FetchPosts>
+          </Grid>
+          <Grid item xs={5}>
+            <PostForm></PostForm>
+          </Grid>
+        </Grid>
       </Box>
     </ThemeProvider>
   );

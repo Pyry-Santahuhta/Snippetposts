@@ -36,50 +36,52 @@ export const PostForm = () => {
   }
   if (authToken) {
     return (
-      <ThemeProvider theme={theme}>
-        <form id="post-form" onSubmit={handleSubmit}>
-          <h2>Post a new code snippet</h2>
-          <label>
+      <div>
+        <ThemeProvider theme={theme}>
+          <form id="post-form" onSubmit={handleSubmit}>
+            <h2>Post a new code snippet</h2>
+            <label>
+              <br />
+              <TextField
+                type="text"
+                id="topic"
+                label="Topic"
+                name="topic"
+                onChange={handleChange}
+                fullWidth
+              />
+            </label>
+            <label>
+              <br />
+              <TextField
+                type="text"
+                id="content"
+                label="Code"
+                name="content"
+                onChange={handleChange}
+                multiline
+                rows={8}
+                fullWidth
+              />
+            </label>
             <br />
-            <TextField
-              type="text"
-              id="topic"
-              label="Topic"
-              name="topic"
-              onChange={handleChange}
-              fullWidth
-            />
-          </label>
-          <label>
-            <br />
-            <TextField
-              type="text"
-              id="content"
-              label="Code"
-              name="content"
-              onChange={handleChange}
-              multiline
-              rows={8}
-              fullWidth
-            />
-          </label>
-          <br />
 
-          <Button
-            type="submit"
-            id="submit"
-            value="Submit"
-            variant="contained"
-            color="primary"
-          >
-            Submit
-          </Button>
-        </form>
-        <div id="alertState"></div>
-      </ThemeProvider>
+            <Button
+              type="submit"
+              id="submit"
+              value="Submit"
+              variant="contained"
+              color="primary"
+            >
+              Submit
+            </Button>
+          </form>
+          <div id="alertState"></div>
+        </ThemeProvider>
+      </div>
     );
   } else {
-    return <Fragment></Fragment>;
+    return <div></div>;
   }
 };
 
