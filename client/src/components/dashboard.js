@@ -7,19 +7,17 @@ import theme from "./materialui/theme";
 import Grid from "@mui/material/Grid";
 import useStyles from "./materialui/styles";
 
-export const dashboard = () => {
+export const Dashboard = () => {
+  const classes = useStyles();
+
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          flexGrow: 1,
-        }}
-      >
+      <Box className={classes.dashBoardBox}>
         <Grid container spacing={1}>
-          <Grid item xs={7}>
+          <Grid className={classes.fetchPosts} item xs={6}>
             <FetchPosts></FetchPosts>
           </Grid>
-          <Grid item xs={5}>
+          <Grid className={classes.postForm} item xs={5}>
             <PostForm></PostForm>
           </Grid>
         </Grid>
@@ -27,4 +25,4 @@ export const dashboard = () => {
     </ThemeProvider>
   );
 };
-export default dashboard;
+export default Dashboard;

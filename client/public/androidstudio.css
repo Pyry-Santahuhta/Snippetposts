@@ -9,13 +9,14 @@ Author: Pedro Oliveira <kanytu@gmail . com>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
+  white-space: pre-wrap;
 }
 
 .hljs-number,
 .hljs-literal,
 .hljs-symbol,
 .hljs-bullet {
-  color: #6897BB;
+  color: #6897bb;
 }
 
 .hljs-keyword,
@@ -42,7 +43,7 @@ Author: Pedro Oliveira <kanytu@gmail . com>
 .hljs-string,
 .hljs-attribute,
 .hljs-addition {
-  color: #6A8759;
+  color: #6a8759;
 }
 
 .hljs-section,

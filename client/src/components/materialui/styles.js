@@ -5,8 +5,17 @@ const useStyles = makeStyles((theme) => ({
     width: "35%",
     marginTop: "30px",
   },
+
+  dashBoardBox: {
+    flexGrow: 1,
+  },
+
   fetchPosts: {
-    marginLeft: "5%",
+    marginLeft: "2%",
+  },
+  postForm: {
+    position: "sticky",
+    alignSelf: "start",
   },
 }));
 

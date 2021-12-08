@@ -73,11 +73,7 @@ class FetchPostsClass extends React.Component {
                         sx={{
                           display: "inline-block",
                         }}
-                        primary={
-                          <Highlight>
-                            <Typography>{post.content}</Typography>
-                          </Highlight>
-                        }
+                        primary={<Highlight>{post.content}</Highlight>}
                         secondary={
                           <Typography
                             sx={{ display: "inline-block", mt: "10px" }}
