@@ -52,12 +52,8 @@ class FetchPostsClass extends React.Component {
                 return (
                   <div key={index}>
                     <ListItem
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        bgcolor: "primary.light",
-                      }}
-                      alignItems="flex-start"
+                      className={classes.listItem}
+                      sx={{ bgcolor: "primary.light" }}
                     >
                       <Typography
                         onClick={() => {
@@ -76,7 +72,7 @@ class FetchPostsClass extends React.Component {
                         primary={<Highlight>{post.content}</Highlight>}
                         secondary={
                           <Typography
-                            sx={{ display: "inline-block", mt: "10px" }}
+                            className={classes.listItemSecondaryText}
                             component="span"
                             variant="body2"
                             color="secondary"
@@ -91,7 +87,7 @@ class FetchPostsClass extends React.Component {
                     <Divider
                       variant="inset"
                       component="li"
-                      sx={{ mb: "20px" }}
+                      className={classes.divider}
                     />
                   </div>
                 );

@@ -8,10 +8,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
+import useStyles from "./materialui/styles";
 
 export const NavBar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  const classes = useStyles();
 
   function handleLogoutClick() {
     localStorage.removeItem("auth_token");
@@ -32,20 +35,10 @@ export const NavBar = () => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <Grid
-                justify="space-between"
-                container
-                spacing={3}
-                alignItems="center"
-              >
+              <Grid className={classes.navbarGrid} container spacing={3}>
                 <Grid item>
-                  <Button
-                    onClick={goHome}
-                    type="button"
-                    id="logout"
-                    color="secondary"
-                  >
-                    <Typography variant="h3" type="title">
+                  <Button color="secondary" onClick={goHome} type="button">
+                    <Typography className={classes.title} variant="h3">
                       Stäkouverflou
                     </Typography>
                   </Button>
@@ -54,9 +47,9 @@ export const NavBar = () => {
                   <Button
                     onClick={handleLogoutClick}
                     type="button"
-                    id="logout"
                     variant="contained"
                     color="secondary"
+                    className={classes.navButton}
                   >
                     Logout
                   </Button>
@@ -69,19 +62,9 @@ export const NavBar = () => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <Grid
-                justify="space-between"
-                container
-                spacing={3}
-                alignItems="center"
-              >
+              <Grid className={classes.navbarGrid} container spacing={3}>
                 <Grid item>
-                  <Button
-                    onClick={goHome}
-                    type="button"
-                    id="logout"
-                    color="secondary"
-                  >
+                  <Button onClick={goHome} type="button" color="secondary">
                     <Typography variant="h3" type="title">
                       Stäkouverflou
                     </Typography>

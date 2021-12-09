@@ -6,7 +6,6 @@ const validateToken = require("../auth/validateToken.js");
 
 router.get("/", function (req, res, next) {
   Post.find({}, (err, posts) => {
-    if (err) throw err;
     if (posts) res.json(posts);
     else res.status(404).send("Not found");
   });
@@ -14,7 +13,6 @@ router.get("/", function (req, res, next) {
 
 router.get("/:id", function (req, res, next) {
   Post.findById(req.params.id, (err, post) => {
-    if (err) throw err;
     if (post) res.json(post);
     else res.status(404).send("Not found");
   });
@@ -22,7 +20,6 @@ router.get("/:id", function (req, res, next) {
 
 router.get("/:searchterm", function (req, res, next) {
   Post.find({ content: { $regex: req.params.searchterm } }, (err, posts) => {
-    if (err) throw err;
     if (posts) res.json(posts);
     else res.status(404).send("Not found");
   });
@@ -48,7 +45,6 @@ router.post("/", validateToken, function (req, res, next) {
 
 router.post("/like/:id/", validateToken, function (req, res, next) {
   Post.findById(req.params.id, (err, post) => {
-    if (err) throw err;
     if (post) {
       Post.updateOne;
     } else res.status(404).send("Not found");

@@ -5,3 +5,12 @@ Test software for accessibility; can it be used only with keyboard / voice comma
 Provide a search that can filter out only those messages that have the searched keyword 2 
 Vote (up or down) posts or comments (only one vote per user) 3
 Last edited timestamp is stored and shown with posts/comments 2
+
+responsiveness
+dashboard
+<Stack>
+  <PostForm />
+  <ScrollView>
+    <FetchPosts />
+  </ScrollView>
+</Stack>

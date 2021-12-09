@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import useStyles from "./materialui/styles";
 
 const authToken = localStorage.getItem("auth_token");
 
 export const AddComment = (props) => {
   const [comment, setComment] = useState({});
+  const classes = useStyles();
 
   const { id } = props;
   function handleChange(event) {
@@ -16,7 +18,7 @@ export const AddComment = (props) => {
   function handleSubmit(event) {
     event.preventDefault();
     if (authToken && comment.content) {
-      fetch("/posts/" + "comment/" + id, {
+      fetch("/posts/comment/" + id, {
         method: "POST",
         body: JSON.stringify(comment),
         headers: {
@@ -41,7 +43,7 @@ export const AddComment = (props) => {
   return (
     <div>
       <TextField
-        sx={{ mt: "20px", mb: "10px" }}
+        className={classes.addCommentTextArea}
         type="text"
         id="content"
         label="Add a comment"

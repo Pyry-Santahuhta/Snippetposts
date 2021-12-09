@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
@@ -44,7 +44,6 @@ export const PostForm = () => {
               <br />
               <TextField
                 type="text"
-                id="topic"
                 label="Topic"
                 name="topic"
                 onChange={handleChange}
@@ -55,7 +54,6 @@ export const PostForm = () => {
               <br />
               <TextField
                 type="text"
-                id="content"
                 label="Code"
                 name="content"
                 onChange={handleChange}
@@ -68,7 +66,6 @@ export const PostForm = () => {
 
             <Button
               type="submit"
-              id="submit"
               value="Submit"
               variant="contained"
               color="primary"

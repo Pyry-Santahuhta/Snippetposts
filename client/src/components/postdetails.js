@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import AddComment from "./addComment";
 import Divider from "@mui/material/Divider";
+import useStyles from "./materialui/styles";
 
 class PostDetailsClass extends React.Component {
   state = {
@@ -28,23 +29,18 @@ class PostDetailsClass extends React.Component {
   render() {
     const post = this.state.post;
     const { id } = this.props;
+    const { classes } = this.props;
+
     return (
       <div>
         {this.state.loading || !this.state.post ? (
           <div>No post found</div>
         ) : (
           <ThemeProvider theme={theme}>
-            <Box
-              sx={{
-                width: "80%",
-                ml: "10%",
-                mt: "5%",
-                textAlign: "left",
-              }}
-            >
-              <Box sx={{ bgcolor: "primary.light", p: "50px" }}>
+            <Box className={classes.postDetailsBox}>
+              <Box className={classes.postBox} bgcolor="primary.light">
                 <Typography variant="h3">{post.topic}</Typography>
-                <Typography sx={{ color: "secondary.dark", mt: "1%" }}>
+                <Typography className={classes.postContent}>
                   {post.content}
                 </Typography>
                 <Typography mt="1%">
@@ -57,29 +53,24 @@ class PostDetailsClass extends React.Component {
                     return (
                       <div key={index}>
                         <Grid item>
-                          <Typography sx={{ wordWrap: "break-word", mt: "1%" }}>
+                          <Typography className={classes.commentContent}>
                             {comment.content}
                           </Typography>
                         </Grid>
-                        <Grid container>
-                          <Grid
-                            item
-                            sx={{ fontStyle: "italic" }}
-                            xs={1}
-                            color="secondary.main"
-                          >
-                            <Typography mt="1%">
+                        <Grid className={classes.commentInfo} container>
+                          <Grid item xs={1} color="secondary">
+                            <Typography>
                               {comment.user.substring(
                                 0,
                                 comment.user.indexOf("@")
                               )}
                             </Typography>
                           </Grid>
-                          <Grid item xs={8} color="secondary.main">
+                          <Grid item xs={8} color="secondary">
                             <Typography>{comment.timestamp}</Typography>
                           </Grid>
                         </Grid>
-                        <Divider sx={{ mb: "s20px" }} variant="inset" />
+                        <Divider className={classes.divider} variant="inset" />
                       </div>
                     );
                   })
@@ -94,5 +85,6 @@ class PostDetailsClass extends React.Component {
 
 export default function PostDetails(props) {
   const { id } = useParams();
-  return <PostDetailsClass {...props} id={id} />;
+  const classes = useStyles();
+  return <PostDetailsClass {...props} id={id} classes={classes} />;
 }

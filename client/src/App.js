@@ -14,9 +14,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
+          bgcolor: "primary.background",
           width: "100%",
           minHeight: "100vh",
-          bgcolor: "primary.background",
         }}
       >
         <NavBar />

@@ -18,7 +18,7 @@ router.post(
   (req, res, next) => {
     //Check if user with this email exists
     User.findOne({ email: req.body.email }, (err, user) => {
-      if (err) throw err;
+      if (err) return res.status(400);
       if (!user) {
         return res.json({ msg: "Invalid credentials" });
       } else {
@@ -27,7 +27,6 @@ router.post(
           req.body.password,
           user.password,
           (err, isMatch) => {
-            if (err) throw err;
             if (isMatch) {
               const jwtPayload = {
                 id: user._id,

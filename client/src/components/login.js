@@ -5,9 +5,11 @@ import theme from "./materialui/theme";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import useStyles from "./materialui/styles";
 
 export const Login = () => {
   const [user, setUsers] = useState(null);
+  const classes = useStyles();
 
   const navigate = useNavigate();
 
@@ -38,21 +40,13 @@ export const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          mt: 16,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
+      <Box className={classes.boxContainer}>
         <h1>Login</h1>
         <form id="login-form" onSubmit={handleSubmit}>
           <label>
             <TextField
               type="email"
               label="email"
-              id="email"
               name="email"
               onChange={handleChange}
             />
@@ -61,10 +55,8 @@ export const Login = () => {
           <br />
           <label>
             <TextField
-              id="outlined-basic"
               label="password"
               type="password"
-              id="password"
               name="password"
               onChange={handleChange}
             />
@@ -73,7 +65,6 @@ export const Login = () => {
           <br />
           <Button
             type="submit"
-            id="submit"
             value="Submit"
             variant="contained"
             color="primary"
