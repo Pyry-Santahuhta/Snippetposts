@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/theme";
+import theme from "./materialui/Theme";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import useStyles from "./materialui/styles";
+import useStyles from "./materialui/Styles";
 
 export const NavBar = () => {
   const [loggedIn, setLoggedIn] = useState(false);

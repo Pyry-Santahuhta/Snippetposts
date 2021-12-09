@@ -6,11 +6,11 @@ import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/theme";
+import theme from "./materialui/Theme";
 import Search from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import Highlight from "react-highlight";
-import useStyles from "./materialui/styles";
+import useStyles from "./materialui/Styles";
 
 class FetchPostsClass extends React.Component {
   state = {
@@ -62,14 +62,19 @@ class FetchPostsClass extends React.Component {
                         sx={{ cursor: "pointer" }}
                         variant="h5"
                       >
-                        {post.topic}
+                        {post.title}
                       </Typography>
 
                       <ListItemText
                         sx={{
                           display: "inline-block",
                         }}
-                        primary={<Highlight>{post.content}</Highlight>}
+                        primary={
+                          <React.Fragment>
+                            <Typography>{post.description}</Typography>
+                            <Highlight>{post.code}</Highlight>
+                          </React.Fragment>
+                        }
                         secondary={
                           <Typography
                             className={classes.listItemSecondaryText}

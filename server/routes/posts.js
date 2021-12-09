@@ -19,7 +19,7 @@ router.get("/:id", function (req, res, next) {
 });
 
 router.get("/:searchterm", function (req, res, next) {
-  Post.find({ content: { $regex: req.params.searchterm } }, (err, posts) => {
+  Post.find({ code: { $regex: req.params.searchterm } }, (err, posts) => {
     if (posts) res.json(posts);
     else res.status(404).send("Not found");
   });
@@ -28,8 +28,9 @@ router.get("/:searchterm", function (req, res, next) {
 router.post("/", validateToken, function (req, res, next) {
   let newPost = new Post({
     user: req.user.email,
-    content: req.body.content,
-    topic: req.body.topic,
+    code: req.body.code,
+    description: req.body.description,
+    title: req.body.title,
     likes: 0,
     timestamp: getDateString.getDateString(),
     comments: [],

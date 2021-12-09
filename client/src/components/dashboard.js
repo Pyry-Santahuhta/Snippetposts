@@ -1,11 +1,11 @@
 import React from "react";
-import PostForm from "./postForm";
-import FetchPosts from "./fetchPosts";
+import PostForm from "./PostForm";
+import FetchPosts from "./FetchPosts";
 import Box from "@mui/material/Box";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/theme";
+import theme from "./materialui/Theme";
 import Grid from "@mui/material/Grid";
-import useStyles from "./materialui/styles";
+import useStyles from "./materialui/Styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 export const Dashboard = () => {

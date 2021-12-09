@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/login";
-import Register from "./components/register";
-import Dashboard from "./components/dashboard";
-import NotFound from "./components/notfound";
-import NavBar from "./components/navbar";
-import PostDetails from "./components/postdetails";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
+import NotFound from "./components/Notfound";
+import NavBar from "./components/Navbar";
+import PostDetails from "./components/PostDetails";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./components/materialui/theme";
+import theme from "./components/materialui/Theme";
 import { Box } from "@mui/system";
 
 function App() {

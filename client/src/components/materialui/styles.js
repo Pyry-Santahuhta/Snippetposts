@@ -75,9 +75,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1%",
   },
 
-  commentInfo: {
+  postInfo: {
     fontStyle: "italic",
     marginTop: "1%",
+  },
+  likesGrid: {
+    direction: "row",
   },
 }));
 

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/theme";
+import theme from "./materialui/Theme";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import useStyles from "./materialui/styles";
+import useStyles from "./materialui/Styles";
 
 export const Register = () => {
   const [user, setUsers] = useState({});

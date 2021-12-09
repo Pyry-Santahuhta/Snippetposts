@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/theme";
+import theme from "./materialui/Theme";
 
 const authToken = localStorage.getItem("auth_token");
 
@@ -16,7 +16,7 @@ export const PostForm = () => {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    if (authToken && post.content && post.topic) {
+    if (authToken && post.code && post.description && post.title) {
       fetch("/posts/", {
         method: "POST",
         body: JSON.stringify(post),
@@ -44,8 +44,8 @@ export const PostForm = () => {
               <br />
               <TextField
                 type="text"
-                label="Topic"
-                name="topic"
+                label="Title"
+                name="title"
                 onChange={handleChange}
                 fullWidth
               />
@@ -54,11 +54,24 @@ export const PostForm = () => {
               <br />
               <TextField
                 type="text"
-                label="Code"
-                name="content"
+                label="Description"
+                name="description"
                 onChange={handleChange}
                 multiline
                 rows={8}
+                fullWidth
+              />
+            </label>
+            <br />
+            <label>
+              <br />
+              <TextField
+                type="text"
+                label="Code"
+                name="code"
+                onChange={handleChange}
+                multiline
+                rows={12}
                 fullWidth
               />
             </label>

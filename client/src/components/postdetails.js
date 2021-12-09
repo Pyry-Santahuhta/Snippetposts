@@ -1,13 +1,15 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/theme";
+import theme from "./materialui/Theme";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import AddComment from "./addComment";
+import AddComment from "./AddComment";
 import Divider from "@mui/material/Divider";
-import useStyles from "./materialui/styles";
+import useStyles from "./materialui/Styles";
+import Highlight from "react-highlight";
+import Likes from "./Likes";
 
 class PostDetailsClass extends React.Component {
   state = {
@@ -39,12 +41,18 @@ class PostDetailsClass extends React.Component {
           <ThemeProvider theme={theme}>
             <Box className={classes.postDetailsBox}>
               <Box className={classes.postBox} bgcolor="primary.light">
-                <Typography variant="h3">{post.topic}</Typography>
+                <Typography variant="h3">{post.title}</Typography>
                 <Typography className={classes.postContent}>
-                  {post.content}
+                  {post.description}
                 </Typography>
-                <Typography mt="1%">
+                <Highlight className={classes.postContent}>
+                  {post.code}
+                </Highlight>
+                <Likes></Likes>
+                <Typography className={classes.postInfo}>
                   {post.user.substring(0, post.user.indexOf("@"))}
+                  <br />
+                  {post.timestamp}
                 </Typography>
               </Box>
               <AddComment id={id}></AddComment>
@@ -57,7 +65,7 @@ class PostDetailsClass extends React.Component {
                             {comment.content}
                           </Typography>
                         </Grid>
-                        <Grid className={classes.commentInfo} container>
+                        <Grid className={classes.postInfo} container>
                           <Grid item xs={1} color="secondary">
                             <Typography>
                               {comment.user.substring(
