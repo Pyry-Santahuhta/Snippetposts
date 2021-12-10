@@ -9,7 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./materialui/Theme";
 import Search from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
-import Highlight from "react-highlight";
+import * as hljs from "highlight.js";
 import useStyles from "./materialui/Styles";
 
 class FetchPostsClass extends React.Component {
@@ -27,7 +27,6 @@ class FetchPostsClass extends React.Component {
     const postData = await response.json();
     if (postData.length > 0) this.setState({ posts: postData, loading: false });
   }
-
   render() {
     const { navigate } = this.props;
     const { classes } = this.props;
@@ -72,7 +71,9 @@ class FetchPostsClass extends React.Component {
                         primary={
                           <React.Fragment>
                             <Typography>{post.description}</Typography>
-                            <Highlight>{post.code}</Highlight>
+                            {/* {hljs.highlightElement( */}
+                            <span id="code">{post.code}</span>
+                            {/* )} */}
                           </React.Fragment>
                         }
                         secondary={

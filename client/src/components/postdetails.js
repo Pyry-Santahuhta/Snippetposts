@@ -14,7 +14,7 @@ import Likes from "./Likes";
 class PostDetailsClass extends React.Component {
   state = {
     loading: true,
-    post: null,
+    post: {},
   };
   async componentDidMount() {
     const { id } = this.props;
@@ -48,12 +48,12 @@ class PostDetailsClass extends React.Component {
                 <Highlight className={classes.postContent}>
                   {post.code}
                 </Highlight>
-                <Likes></Likes>
                 <Typography className={classes.postInfo}>
                   {post.user.substring(0, post.user.indexOf("@"))}
                   <br />
                   {post.timestamp}
                 </Typography>
+                <Likes post={post} id={id} />
               </Box>
               <AddComment id={id}></AddComment>
               {post.comments

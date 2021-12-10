@@ -69,6 +69,7 @@ router.post(
     let newUser = new User({
       email: req.body.email,
       password: req.body.password,
+      votes: [],
     });
 
     //If validation is unsuccesful, errors are logged here
@@ -99,5 +100,12 @@ router.post(
     });
   }
 );
+
+router.get("/:id", function (req, res, next) {
+  User.findById(req.params.id, (err, user) => {
+    if (user) res.json(user);
+    else res.status(404).send("Not found");
+  });
+});
 
 module.exports = router;

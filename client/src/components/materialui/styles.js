@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   likesGrid: {
     direction: "row",
+    marginTop: "1%",
   },
 }));
 

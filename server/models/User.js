@@ -7,6 +7,7 @@ let userSchema = new Schema(
   {
     email: { type: String, required: true },
     password: { type: String, required: true },
+    votes: [{ vote: Number, post: Schema.Types.ObjectId }],
   },
   { collection: "users" }
 );
