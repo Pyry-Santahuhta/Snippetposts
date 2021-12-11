@@ -36,41 +36,39 @@ export const Register = () => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box className={classes.boxContainer}>
-        <h1>Register</h1>
-        <form id="register-form" onSubmit={handleSubmit}>
-          <label>
-            <TextField
-              type="email"
-              label="email"
-              name="email"
-              onChange={handleChange}
-            />
-          </label>
-          <br /> <br />
-          <label>
-            <TextField
-              label="password"
-              type="password"
-              name="password"
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <br />
-          <Button
-            type="submit"
-            value="Submit"
-            variant="contained"
-            color="primary"
-          >
-            Submit
-          </Button>
-        </form>
-        <div id="errors"></div>
-      </Box>
-    </ThemeProvider>
+    <Box className={classes.boxContainer}>
+      <h1>Register</h1>
+      <form id="register-form" onSubmit={handleSubmit}>
+        <label>
+          <TextField
+            type="email"
+            label="email"
+            name="email"
+            onChange={handleChange}
+          />
+        </label>
+        <br /> <br />
+        <label>
+          <TextField
+            label="password"
+            type="password"
+            name="password"
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <Button
+          type="submit"
+          value="Submit"
+          variant="contained"
+          color="primary"
+        >
+          Submit
+        </Button>
+      </form>
+      <div id="errors"></div>
+    </Box>
   );
 };
 

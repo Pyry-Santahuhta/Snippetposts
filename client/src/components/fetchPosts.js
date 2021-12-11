@@ -11,6 +11,7 @@ import Search from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import * as hljs from "highlight.js";
 import useStyles from "./materialui/Styles";
+import Likes from "./Likes";
 
 class FetchPostsClass extends React.Component {
   state = {
@@ -36,7 +37,7 @@ class FetchPostsClass extends React.Component {
         {this.state.loading || !this.state.posts ? (
           <div>No posts found</div>
         ) : (
-          <ThemeProvider theme={theme}>
+          <div>
             <TextField
               className={classes.search}
               type="text"
@@ -99,7 +100,7 @@ class FetchPostsClass extends React.Component {
                 );
               })}
             </List>
-          </ThemeProvider>
+          </div>
         )}
       </div>
     );

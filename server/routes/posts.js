@@ -48,7 +48,6 @@ router.post("/", validateToken, function (req, res, next) {
 //Update vote count for a post.
 router.patch("/vote/:id/", validateToken, function (req, res, next) {
   const newVote = req.body.vote;
-
   //Look if the post exists that the user is trying to vote.
   Post.findById(req.params.id, (err, post) => {
     if (!post) {
@@ -58,10 +57,8 @@ router.patch("/vote/:id/", validateToken, function (req, res, next) {
       User.findOne({ email: req.user.email }, (err, user) => {
         //Check if the user has voted on this before.
         const foundVote = user.votes.find(
-          (element) => element.post.toString(),
-          req.params.id
+          (element) => element.post.toString() === req.params.id
         );
-
         //If the user has voted before...
         if (foundVote) {
           if (foundVote.vote === 1 && newVote === 0) {
@@ -93,7 +90,8 @@ router.patch("/vote/:id/", validateToken, function (req, res, next) {
             //The new vote is different from the user's first one, so change the vote to be the new one.
             //Also increment or decrement the value from the post's likes and save.
             foundVote.vote = newVote;
-            post.likes += newVote;
+            post.likes += newVote * 2;
+
             user.save();
             post.save();
             res.json({ Success: true, msg: "Vote updated" });
@@ -105,7 +103,7 @@ router.patch("/vote/:id/", validateToken, function (req, res, next) {
           post.likes += newVote;
           user.save();
           post.save();
-          res.json({ Success: true, msg: "Vote updated" });
+          res.json({ Success: true, msg: "Vote added" });
         }
       });
     }
@@ -119,7 +117,6 @@ router.patch("/vote/:id/", validateToken, function (req, res, next) {
 });
 
 router.post("/comment/:id", validateToken, function (req, res, next) {
-  console.log(req.body.content);
   Post.findByIdAndUpdate(
     { _id: req.params.id },
     {

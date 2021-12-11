@@ -20,6 +20,7 @@ export const NavBar = () => {
     localStorage.removeItem("auth_token");
     navigate("login");
     setLoggedIn(false);
+    window.location.reload(false);
   }
   function goHome() {
     navigate("");
@@ -30,7 +31,7 @@ export const NavBar = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       {loggedIn ? (
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
@@ -89,7 +90,7 @@ export const NavBar = () => {
           </AppBar>
         </Box>
       )}
-    </ThemeProvider>
+    </div>
   );
 };
 

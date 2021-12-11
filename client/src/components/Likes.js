@@ -11,6 +11,30 @@ const authToken = localStorage.getItem("auth_token");
 export const Likes = (props) => {
   const classes = useStyles();
   const [vote, setVote] = useState(0);
+  const [displayableVotes, setDisplayableVotes] = useState(props.post.likes);
+
+  useEffect(() => {
+    async function getLikes() {
+      const parsedToken = ParseJwt(authToken);
+      let response = await fetch("/users/" + parsedToken.id, {
+        method: "GET",
+      });
+      response = await response.json();
+      if (response) {
+        const foundVote = response.votes.find(
+          (element) => element.post.toString() === props.id
+        );
+        if (foundVote) {
+          if (foundVote.vote === 1) {
+            setVote(1);
+          } else {
+            setVote(-1);
+          }
+        }
+      }
+    }
+    getLikes();
+  }, []);
 
   async function updateLikes(vote) {
     await fetch("/posts/vote/" + props.id, {
@@ -23,68 +47,45 @@ export const Likes = (props) => {
     });
   }
 
-  useEffect(() => {
-    const parsedToken = ParseJwt(authToken);
-
-    fetch("/users/" + parsedToken.id, {
-      method: "GET",
-    }).then((res) => {
-      res.json().then((user) => {
-        if (user) {
-          const foundVote = user.votes.find(
-            (element) => element.post.toString(),
-            props.id
-          );
-          if (foundVote) {
-            if (foundVote.vote === 1) {
-              setVote(1);
-            } else {
-              setVote(-1);
-            }
-          }
-        }
-      });
-    });
-  }, []);
+  async function handleUndoLike(vote) {
+    setVote(0);
+    await updateLikes(0);
+  }
 
   async function increment() {
     if (vote === 1) {
+      setDisplayableVotes(displayableVotes - 1);
       handleUndoLike(1);
     } else if (vote === -1) {
-      setVote(1);
-      props.post.likes += 1;
+      setDisplayableVotes(displayableVotes + 2);
       await handleUndoLike(-1);
+      setVote(1);
       await updateLikes(1);
     } else {
+      setDisplayableVotes(displayableVotes + 1);
       setVote(1);
-      props.post.likes += 1;
       await updateLikes(1);
     }
   }
   async function decrement() {
     if (vote === -1) {
+      setDisplayableVotes(displayableVotes + 1);
       handleUndoLike(-1);
     } else if (vote === 1) {
-      setVote(-1);
-      props.post.likes -= 1;
+      setDisplayableVotes(displayableVotes - 2);
       await handleUndoLike(1);
+      setVote(-1);
       await updateLikes(-1);
     } else {
+      setDisplayableVotes(displayableVotes - 1);
       setVote(-1);
-      props.post.likes -= 1;
       await updateLikes(-1);
     }
   }
 
-  async function handleUndoLike(vote) {
-    setVote(0);
-    props.post.likes -= vote;
-    await updateLikes(0);
-  }
-
   return (
     <Grid container className={classes.likesGrid}>
-      <Grid item>{props.post.likes}</Grid>
+      <Grid item>{displayableVotes}</Grid>
       <IconButton
         color={vote === 1 ? "select" : "secondary"}
         onClick={increment}

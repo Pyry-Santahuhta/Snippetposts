@@ -13,18 +13,16 @@ export const Dashboard = () => {
   const largeScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box className={classes.dashBoardBox}>
-        <Grid direction={largeScreen ? "row" : "column"} container spacing={1}>
-          <Grid className={classes.fetchPosts} item xs={6}>
-            <FetchPosts></FetchPosts>
-          </Grid>
-          <Grid item xs={5} className={classes.postForm}>
-            <PostForm></PostForm>
-          </Grid>
+    <Box className={classes.dashBoardBox}>
+      <Grid direction={largeScreen ? "row" : "column"} container spacing={1}>
+        <Grid className={classes.fetchPosts} item xs={6}>
+          <FetchPosts></FetchPosts>
         </Grid>
-      </Box>
-    </ThemeProvider>
+        <Grid item xs={5} className={classes.postForm}>
+          <PostForm></PostForm>
+        </Grid>
+      </Grid>
+    </Box>
   );
 
   // return (

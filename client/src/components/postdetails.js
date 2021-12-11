@@ -38,53 +38,49 @@ class PostDetailsClass extends React.Component {
         {this.state.loading || !this.state.post ? (
           <div>No post found</div>
         ) : (
-          <ThemeProvider theme={theme}>
-            <Box className={classes.postDetailsBox}>
-              <Box className={classes.postBox} bgcolor="primary.light">
-                <Typography variant="h3">{post.title}</Typography>
-                <Typography className={classes.postContent}>
-                  {post.description}
-                </Typography>
-                <Highlight className={classes.postContent}>
-                  {post.code}
-                </Highlight>
-                <Typography className={classes.postInfo}>
-                  {post.user.substring(0, post.user.indexOf("@"))}
-                  <br />
-                  {post.timestamp}
-                </Typography>
-                <Likes post={post} id={id} />
-              </Box>
-              <AddComment id={id}></AddComment>
-              {post.comments
-                ? post.comments.map((comment, index) => {
-                    return (
-                      <div key={index}>
-                        <Grid item>
-                          <Typography className={classes.commentContent}>
-                            {comment.content}
+          <Box className={classes.postDetailsBox}>
+            <Box className={classes.postBox} bgcolor="primary.light">
+              <Typography variant="h3">{post.title}</Typography>
+              <Typography className={classes.postContent}>
+                {post.description}
+              </Typography>
+              <Highlight className={classes.postContent}>{post.code}</Highlight>
+              <Typography className={classes.postInfo}>
+                {post.user.substring(0, post.user.indexOf("@"))}
+                <br />
+                {post.timestamp}
+              </Typography>
+              <Likes post={post} id={id} />
+            </Box>
+            <AddComment id={id}></AddComment>
+            {post.comments
+              ? post.comments.map((comment, index) => {
+                  return (
+                    <div key={index}>
+                      <Grid item>
+                        <Typography className={classes.commentContent}>
+                          {comment.content}
+                        </Typography>
+                      </Grid>
+                      <Grid className={classes.postInfo} container>
+                        <Grid item xs={1} color="secondary">
+                          <Typography>
+                            {comment.user.substring(
+                              0,
+                              comment.user.indexOf("@")
+                            )}
                           </Typography>
                         </Grid>
-                        <Grid className={classes.postInfo} container>
-                          <Grid item xs={1} color="secondary">
-                            <Typography>
-                              {comment.user.substring(
-                                0,
-                                comment.user.indexOf("@")
-                              )}
-                            </Typography>
-                          </Grid>
-                          <Grid item xs={8} color="secondary">
-                            <Typography>{comment.timestamp}</Typography>
-                          </Grid>
+                        <Grid item xs={8} color="secondary">
+                          <Typography>{comment.timestamp}</Typography>
                         </Grid>
-                        <Divider className={classes.divider} variant="inset" />
-                      </div>
-                    );
-                  })
-                : null}
-            </Box>
-          </ThemeProvider>
+                      </Grid>
+                      <Divider className={classes.divider} variant="inset" />
+                    </div>
+                  );
+                })
+              : null}
+          </Box>
         )}
       </div>
     );
