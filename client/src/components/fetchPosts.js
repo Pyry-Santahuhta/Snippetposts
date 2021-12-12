@@ -5,19 +5,27 @@ import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/Theme";
-import Search from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
+
 import * as hljs from "highlight.js";
 import useStyles from "./materialui/Styles";
+import SearchPosts from "./SearchPosts";
+
 import Likes from "./Likes";
 
 class FetchPostsClass extends React.Component {
   state = {
-    loading: true,
     posts: null,
   };
+
+  setPosts(postData) {
+    if (postData.length > 0) this.setState({ posts: postData });
+
+    const codeBlocks = document.getElementsByClassName("code");
+    for (var i = 0; i < codeBlocks.length; i++) {
+      hljs.highlightElement(codeBlocks[i]);
+    }
+  }
+
   async componentDidMount() {
     const response = await fetch("/posts/", {
       method: "GET",
@@ -25,8 +33,9 @@ class FetchPostsClass extends React.Component {
         "Content-Type": "application/json",
       },
     });
+
     const postData = await response.json();
-    if (postData.length > 0) this.setState({ posts: postData, loading: false });
+    this.setPosts(postData);
   }
   render() {
     const { navigate } = this.props;
@@ -34,19 +43,12 @@ class FetchPostsClass extends React.Component {
 
     return (
       <div>
-        {this.state.loading || !this.state.posts ? (
+        <SearchPosts setPosts={this.setPosts}></SearchPosts>
+
+        {!this.state.posts ? (
           <div>No posts found</div>
         ) : (
           <div>
-            <TextField
-              className={classes.search}
-              type="text"
-              name="search"
-              label="Search"
-              InputProps={{
-                endAdornment: <Search />,
-              }}
-            />
             <List>
               {this.state.posts.map((post, index) => {
                 return (
@@ -64,7 +66,6 @@ class FetchPostsClass extends React.Component {
                       >
                         {post.title}
                       </Typography>
-
                       <ListItemText
                         sx={{
                           display: "inline-block",
@@ -72,9 +73,8 @@ class FetchPostsClass extends React.Component {
                         primary={
                           <React.Fragment>
                             <Typography>{post.description}</Typography>
-                            {/* {hljs.highlightElement( */}
-                            <span id="code">{post.code}</span>
-                            {/* )} */}
+
+                            <span className="code">{post.code}</span>
                           </React.Fragment>
                         }
                         secondary={
@@ -90,6 +90,7 @@ class FetchPostsClass extends React.Component {
                           </Typography>
                         }
                       />
+                      <Likes post={post} id={post._id} />
                     </ListItem>
                     <Divider
                       variant="inset"

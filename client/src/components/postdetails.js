@@ -1,14 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/Theme";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import AddComment from "./AddComment";
 import Divider from "@mui/material/Divider";
+import * as hljs from "highlight.js";
 import useStyles from "./materialui/Styles";
-import Highlight from "react-highlight";
 import Likes from "./Likes";
 
 class PostDetailsClass extends React.Component {
@@ -26,6 +24,9 @@ class PostDetailsClass extends React.Component {
     });
     const postData = await response.json();
     if (postData) this.setState({ post: postData, loading: false });
+
+    const codeBlock = document.getElementById("code");
+    hljs.highlightElement(codeBlock);
   }
 
   render() {
@@ -40,11 +41,13 @@ class PostDetailsClass extends React.Component {
         ) : (
           <Box className={classes.postDetailsBox}>
             <Box className={classes.postBox} bgcolor="primary.light">
-              <Typography variant="h3">{post.title}</Typography>
+              <Typography variant="h4">{post.title}</Typography>
               <Typography className={classes.postContent}>
                 {post.description}
               </Typography>
-              <Highlight className={classes.postContent}>{post.code}</Highlight>
+              <span id="code" className={classes.postContent}>
+                {post.code}
+              </span>
               <Typography className={classes.postInfo}>
                 {post.user.substring(0, post.user.indexOf("@"))}
                 <br />

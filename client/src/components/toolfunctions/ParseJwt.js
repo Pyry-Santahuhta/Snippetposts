@@ -1,4 +1,6 @@
+//Jwt parsing function from this source:
 //https://stackoverflow.com/questions/54036341/how-to-get-user-information-from-jwt-cookie-in-nextjs-reactjs
+
 function ParseJwt(token) {
   if (!token) {
     return;

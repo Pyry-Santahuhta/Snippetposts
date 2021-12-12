@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/Theme";
 
 const authToken = localStorage.getItem("auth_token");
 

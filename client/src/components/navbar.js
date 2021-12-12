@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./materialui/Theme";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import useStyles from "./materialui/Styles";
 
 export const NavBar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const largeScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
   const classes = useStyles();
 
@@ -36,10 +36,18 @@ export const NavBar = () => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <Grid className={classes.navbarGrid} container spacing={3}>
+              <Grid
+                className={classes.navbarGrid}
+                container
+                spacing={3}
+                direction={largeScreen ? "row" : "column"}
+              >
                 <Grid item>
                   <Button color="secondary" onClick={goHome} type="button">
-                    <Typography className={classes.title} variant="h3">
+                    <Typography
+                      className={classes.title}
+                      variant={largeScreen ? "h3" : "h4"}
+                    >
                       Stäkouverflou
                     </Typography>
                   </Button>
@@ -63,10 +71,18 @@ export const NavBar = () => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <Grid className={classes.navbarGrid} container spacing={3}>
+              <Grid
+                className={classes.navbarGrid}
+                container
+                spacing={3}
+                direction={largeScreen ? "row" : "column"}
+              >
                 <Grid item>
                   <Button onClick={goHome} type="button" color="secondary">
-                    <Typography variant="h3" type="title">
+                    <Typography
+                      className={classes.title}
+                      variant={largeScreen ? "h3" : "h5"}
+                    >
                       Stäkouverflou
                     </Typography>
                   </Button>

@@ -19,11 +19,31 @@ router.get("/:id", function (req, res, next) {
   });
 });
 
-router.get("/:searchterm", function (req, res, next) {
-  Post.find({ code: { $regex: req.params.searchterm } }, (err, posts) => {
-    if (posts) res.json(posts);
-    else res.status(404).send("Not found");
-  });
+router.get("/search/:searchterm", function (req, res, next) {
+  let regex = new RegExp(req.params.searchterm, "i");
+  Post.find(
+    {
+      $and: [
+        {
+          $or: [
+            {
+              title: regex,
+            },
+            {
+              description: regex,
+            },
+            {
+              code: regex,
+            },
+          ],
+        },
+      ],
+    },
+    (err, posts) => {
+      if (posts) res.json(posts);
+      else res.status(404).send("Not found");
+    }
+  );
 });
 
 router.post("/", validateToken, function (req, res, next) {

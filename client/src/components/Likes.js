@@ -34,7 +34,7 @@ export const Likes = (props) => {
       }
     }
     getLikes();
-  }, []);
+  }, [props.id]);
 
   async function updateLikes(vote) {
     await fetch("/posts/vote/" + props.id, {
