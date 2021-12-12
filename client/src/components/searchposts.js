@@ -29,7 +29,7 @@ export const SearchPosts = (props) => {
           });
           const postData = await response.json();
           console.log(postData);
-          props.setPosts({ posts: postData });
+          props.setPosts(postData);
         }
       }}
     />

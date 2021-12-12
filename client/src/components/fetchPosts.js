@@ -43,7 +43,11 @@ class FetchPostsClass extends React.Component {
 
     return (
       <div>
-        <SearchPosts setPosts={this.setPosts}></SearchPosts>
+        <SearchPosts
+          setPosts={(data) => {
+            this.setPosts(data);
+          }}
+        ></SearchPosts>
 
         {!this.state.posts ? (
           <div>No posts found</div>
