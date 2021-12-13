@@ -3,7 +3,7 @@ import PostForm from "./PostForm";
 import FetchPosts from "./FetchPosts";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import useStyles from "./materialui/Styles";
+import useStyles from "../materialui/Styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 export const Dashboard = () => {
@@ -22,18 +22,5 @@ export const Dashboard = () => {
       </Grid>
     </Box>
   );
-
-  // return (
-  //   <ThemeProvider theme={theme}>
-  //     <Box>
-  //       <Box className={classes.postForm}>
-  //         <PostForm></PostForm>
-  //       </Box>
-  //       <List className={classes.dashboardList}>
-  //         <FetchPosts></FetchPosts>
-  //       </List>
-  //     </Box>
-  //   </ThemeProvider>
-  // );
 };
 export default Dashboard;

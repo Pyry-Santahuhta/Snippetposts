@@ -55,7 +55,7 @@ export const PostForm = () => {
               name="description"
               onChange={handleChange}
               multiline
-              rows={8}
+              rows={5}
               fullWidth
             />
           </label>
@@ -68,7 +68,7 @@ export const PostForm = () => {
               name="code"
               onChange={handleChange}
               multiline
-              rows={12}
+              rows={10}
               fullWidth
             />
           </label>

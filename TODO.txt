@@ -1,10 +1,11 @@
-Users can edit their own comments/posts 4
 DONE - Utilization of a frontside framework, such as React, but you can also use Angular, Vue or some other 5
-Use some highlight library for the code snippets, for example https://highlightjs.org/ 2
+DONE - Use some highlight library for the code snippets, for example https://highlightjs.org/ 2
+DONE -Provide a search that can filter out only those messages that have the searched keyword 2 
+DONE - Vote (up or down) posts or comments (only one vote per user) 3
+DONE - Last edited timestamp is stored and shown with posts/comments 2
+
+Users can edit their own comments/posts 4
 Test software for accessibility; can it be used only with keyboard / voice command? Can screen readers work with your application? 3
-Provide a search that can filter out only those messages that have the searched keyword 2 
-Vote (up or down) posts or comments (only one vote per user) 3
-Last edited timestamp is stored and shown with posts/comments 2
 
 responsiveness
 dashboard

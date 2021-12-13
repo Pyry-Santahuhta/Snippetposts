@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "@mui/icons-material/Search";
-import useStyles from "./materialui/Styles";
+import useStyles from "../materialui/Styles";
 import TextField from "@mui/material/TextField";
 
 export const SearchPosts = (props) => {

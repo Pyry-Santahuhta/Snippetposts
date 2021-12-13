@@ -7,10 +7,9 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
 import * as hljs from "highlight.js";
-import useStyles from "./materialui/Styles";
+import useStyles from "../materialui/Styles";
 import SearchPosts from "./SearchPosts";
-
-import Likes from "./Likes";
+import Likes from "../Likes";
 
 class FetchPostsClass extends React.Component {
   state = {

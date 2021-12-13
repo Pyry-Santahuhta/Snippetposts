@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-
+const dotenv = require("dotenv").config({ path: "../.env" });
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts");
 const mongoose = require("mongoose");
@@ -20,11 +20,13 @@ app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 
 if (process.env.NODE_ENV === "production") {
+  console.log("Starting on production");
   app.use(express.static(path.join(__dirname, "../client/build")));
   app.get("*", (req, res) =>
     res.sendFile(path.join(__dirname, "../client/build"))
   );
 } else if (process.env.NODE_ENV === "development") {
+  console.log("Starting on development");
   const corsOptions = {
     origin: "*",
     optionsSuccessStatus: 200,

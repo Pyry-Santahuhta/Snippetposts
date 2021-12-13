@@ -14,26 +14,30 @@ export const Likes = (props) => {
   const [displayableVotes, setDisplayableVotes] = useState(props.post.likes);
 
   useEffect(() => {
-    async function getLikes() {
-      const parsedToken = ParseJwt(authToken);
-      let response = await fetch("/users/" + parsedToken.id, {
-        method: "GET",
-      });
-      response = await response.json();
-      if (response) {
-        const foundVote = response.votes.find(
-          (element) => element.post.toString() === props.id
-        );
-        if (foundVote) {
-          if (foundVote.vote === 1) {
-            setVote(1);
-          } else {
-            setVote(-1);
+    if (!authToken) {
+      return;
+    } else {
+      async function getLikes() {
+        const parsedToken = ParseJwt(authToken);
+        let response = await fetch("/users/" + parsedToken.id, {
+          method: "GET",
+        });
+        response = await response.json();
+        if (response) {
+          const foundVote = response.votes.find(
+            (element) => element.post.toString() === props.id
+          );
+          if (foundVote) {
+            if (foundVote.vote === 1) {
+              setVote(1);
+            } else {
+              setVote(-1);
+            }
           }
         }
       }
+      getLikes();
     }
-    getLikes();
   }, [props.id]);
 
   async function updateLikes(vote) {
@@ -82,26 +86,33 @@ export const Likes = (props) => {
       await updateLikes(-1);
     }
   }
-
-  return (
-    <Grid container className={classes.likesGrid}>
-      <Grid item>{displayableVotes}</Grid>
-      <IconButton
-        color={vote === 1 ? "select" : "secondary"}
-        onClick={increment}
-        aria-label="ThumbUp"
-      >
-        <ThumbUp />
-      </IconButton>
-      <IconButton
-        color={vote === -1 ? "select" : "secondary"}
-        onClick={decrement}
-        aria-label="ThumbDown"
-      >
-        <ThumbDown />
-      </IconButton>
-    </Grid>
-  );
+  if (authToken) {
+    return (
+      <Grid container className={classes.likesGrid}>
+        <Grid item>{displayableVotes}</Grid>
+        <IconButton
+          color={vote === 1 ? "select" : "secondary"}
+          onClick={increment}
+          aria-label="ThumbUp"
+        >
+          <ThumbUp />
+        </IconButton>
+        <IconButton
+          color={vote === -1 ? "select" : "secondary"}
+          onClick={decrement}
+          aria-label="ThumbDown"
+        >
+          <ThumbDown />
+        </IconButton>
+      </Grid>
+    );
+  } else {
+    return (
+      <Grid container className={classes.likesGrid}>
+        <Grid item>Likes: {displayableVotes}</Grid>
+      </Grid>
+    );
+  }
 };
 
 export default Likes;

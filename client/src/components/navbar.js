@@ -48,7 +48,7 @@ export const NavBar = () => {
                       className={classes.title}
                       variant={largeScreen ? "h3" : "h4"}
                     >
-                      Stäkouverflou
+                      Snippet Posts
                     </Typography>
                   </Button>
                 </Grid>
@@ -83,7 +83,7 @@ export const NavBar = () => {
                       className={classes.title}
                       variant={largeScreen ? "h3" : "h5"}
                     >
-                      Stäkouverflou
+                      Snippet Posts
                     </Typography>
                   </Button>
                 </Grid>

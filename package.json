@@ -9,8 +9,13 @@
     "dev:server": "cd server && npm run dev",
     "preinstall": "cd server && npm install",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "setDevelopment": "NODE_ENV=development node app.js",
+    "setProduction": "NODE_ENV=production node app.js"
   },
   "author": "Pyry Santahuhta",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
 }

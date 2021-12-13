@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import useStyles from "./materialui/Styles";
+import useStyles from "../materialui/Styles";
+import AlertMessage from "../AlertMessage";
 
 const authToken = localStorage.getItem("auth_token");
 
 export const AddComment = (props) => {
   const [comment, setComment] = useState({});
+  const [status, setStatus] = useState(null);
   const classes = useStyles();
 
   const { id } = props;
@@ -28,42 +30,51 @@ export const AddComment = (props) => {
       }).then((res) => {
         res.json().then((data) => {
           if (data.success) {
-            document.getElementById("alertState").innerHTML = "Success!";
+            setStatus({ msg: "Comment posted!", severity: "success" });
             document.getElementById("content").value = "";
             window.location.reload(false);
           }
         });
       });
     } else {
-      document.getElementById("alertState").innerHTML =
-        "Write something first!";
+      setStatus({ msg: "Write a comment first!", severity: "error" });
     }
   }
 
-  return (
-    <div>
-      <TextField
-        className={classes.addCommentTextArea}
-        type="text"
-        id="content"
-        label="Add a comment"
-        name="content"
-        onChange={handleChange}
-        fullWidth
-      />
-      <Button
-        type="submit"
-        id="submit"
-        value="Submit"
-        variant="contained"
-        color="primary"
-        onClick={handleSubmit}
-      >
-        comment
-      </Button>
-      <div id="alertState"></div>
-    </div>
-  );
+  if (authToken) {
+    return (
+      <div>
+        <TextField
+          className={classes.addCommentTextArea}
+          type="text"
+          id="content"
+          label="Add a comment"
+          name="content"
+          onChange={handleChange}
+          fullWidth
+        />
+        <Button
+          type="submit"
+          id="submit"
+          value="Submit"
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+        >
+          comment
+        </Button>
+        {status ? (
+          <AlertMessage
+            severity={status.severity}
+            message={status.msg}
+            open={true}
+          />
+        ) : null}
+      </div>
+    );
+  } else {
+    return <div></div>;
+  }
 };
 
 export default AddComment;

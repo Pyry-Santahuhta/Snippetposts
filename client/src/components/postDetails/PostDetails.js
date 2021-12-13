@@ -6,8 +6,8 @@ import Grid from "@mui/material/Grid";
 import AddComment from "./AddComment";
 import Divider from "@mui/material/Divider";
 import * as hljs from "highlight.js";
-import useStyles from "./materialui/Styles";
-import Likes from "./Likes";
+import useStyles from "../materialui/Styles";
+import Likes from "../Likes";
 
 class PostDetailsClass extends React.Component {
   state = {
