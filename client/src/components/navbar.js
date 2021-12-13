@@ -9,29 +9,33 @@ import { Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useStyles from "./materialui/Styles";
 
+// Navbar that holds navigation and the logout button.
 export const NavBar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const largeScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
-
   const classes = useStyles();
 
   function handleLogoutClick() {
     localStorage.removeItem("auth_token");
     navigate("login");
     setLoggedIn(false);
+    //Reload page to reload react state so postform and like buttons disappear.
     window.location.reload(false);
   }
+
   function goHome() {
     navigate("");
   }
 
+  //On page load check if the user is logged in
   useEffect(() => {
     if (localStorage.getItem("auth_token")) setLoggedIn(true);
   }, []);
 
   return (
     <div>
+      {/* If the user is logged in, return navbar with logout button and if the user isn't return navbar with register and login buttons */}
       {loggedIn ? (
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
@@ -40,9 +44,11 @@ export const NavBar = () => {
                 className={classes.navbarGrid}
                 container
                 spacing={3}
+                //Make the bar flow responsively depending on screen size
                 direction={largeScreen ? "row" : "column"}
               >
                 <Grid item>
+                  {/* Title which is also a button */}
                   <Button color="secondary" onClick={goHome} type="button">
                     <Typography
                       className={classes.title}

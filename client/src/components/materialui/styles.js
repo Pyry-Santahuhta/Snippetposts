@@ -1,13 +1,11 @@
 import { makeStyles } from "@mui/styles";
 
+//The styles for the app are done here
+//Import and call the useStyles function to create a classes object, holding all of the css.
 const useStyles = makeStyles((theme) => ({
   search: {
     width: "35%",
     marginTop: "30px",
-  },
-
-  dashBoardBox: {
-    flexGrow: 1,
   },
 
   fetchPosts: {
@@ -15,22 +13,19 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "2%",
   },
 
+  //Make the postform stay on the right side at all times
   postForm: {
     position: "sticky",
     top: 0,
     left: 0,
     alignSelf: "start",
   },
-  dashboardList: {
-    flexGrow: 1,
-    maxHeight: "100%",
-    overflow: "auto",
-  },
 
   navbarGrid: {
     justify: "space-between",
     alignItems: "center",
   },
+
   addCommentTextArea: {
     marginTop: "20px",
     marginBottom: "10px",
@@ -47,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
   },
 
-  divider: { marginBottom: "20px" },
+  divider: { marginTop: "20px" },
 
   boxContainer: {
     marginTop: "20vh",
@@ -62,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5%",
     textAlign: "left",
   },
+
   postBox: {
     padding: "3%",
   },

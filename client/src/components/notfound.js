@@ -1,9 +1,10 @@
 import React from "react";
 
+//Component for all pages that are not specified in routes
 export const NotFound = () => {
   return (
     <div>
-      <h1>404: this is not the webpage you are looking for</h1>
+      <h1>404: webpage not found :c </h1>
     </div>
   );
 };

@@ -1,6 +1,6 @@
+/* A few global css styles are here, the rest in components/materialui/styles.js */
 body {
   margin: 0;
-
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

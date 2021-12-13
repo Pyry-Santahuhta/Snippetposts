@@ -57,12 +57,11 @@ router.post(
   //Validate input using express validator and multer
   upload.none(),
   body("email").isEmail().normalizeEmail().escape(),
-  body("password")
-    //password is checked to contain a capital and non-capital letter, a number, a special character and to be at least 8 characters long. This is done with regex
-    .isLength({ min: 8 })
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`'!@#$%^&*()-_+={}[\]|;:"<>,.\/?])[A-Za-z\d~`'!@#$%^&*()-_+={}[\]|;:"<>,.\/?]{8,}$/
-    ),
+
+  //password is checked to contain a capital and non-capital letter, a number and to be at least 8 characters long. This is done with regex
+  body("password").matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`'!@#$%^&*()-_+={}[\]|;:"<>,.\/?])[A-Za-z\d~`'!@#$%^&*()-_+={}[\]|;:"<>,.\/?]{8,}$/
+  ),
 
   (req, res, next) => {
     //Template for the new user
