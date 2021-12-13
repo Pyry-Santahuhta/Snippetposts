@@ -19,7 +19,6 @@ export default function AlertMessage(props) {
       <Snackbar
         open={open}
         onClose={handleClose}
-        severity={props.severity}
         action={[
           <IconButton onClick={handleClose}>
             <Close />

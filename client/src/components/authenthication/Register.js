@@ -4,10 +4,12 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import useStyles from "../materialui/Styles";
+import AlertMessage from "../AlertMessage";
 
 export const Register = () => {
   const [user, setUsers] = useState({});
   const classes = useStyles();
+  const [status, setStatus] = useState(null);
 
   const navigate = useNavigate();
   function handleChange(event) {
@@ -17,6 +19,16 @@ export const Register = () => {
   }
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (!user || !user.email || !user.password) {
+      setStatus({
+        msg: "Write your credentials first!",
+        severity: "error",
+        key: Math.random(),
+      });
+      return;
+    }
+
     fetch("/users/register/", {
       method: "POST",
       body: JSON.stringify(user),
@@ -25,10 +37,16 @@ export const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          setStatus({
+            msg: "Register successfull",
+            severity: "success",
+            key: Math.random(),
+          });
+
           navigate("/login");
         }
         if (data.msg) {
-          document.getElementById("errors").innerHTML = data.msg;
+          setStatus({ msg: data.msg, severity: "error", key: Math.random() });
         }
       });
   }
@@ -38,12 +56,7 @@ export const Register = () => {
       <h1>Register</h1>
       <form id="register-form" onSubmit={handleSubmit}>
         <label>
-          <TextField
-            type="email"
-            label="email"
-            name="email"
-            onChange={handleChange}
-          />
+          <TextField label="email" name="email" onChange={handleChange} />
         </label>
         <br /> <br />
         <label>
@@ -65,7 +78,13 @@ export const Register = () => {
           Submit
         </Button>
       </form>
-      <div id="errors"></div>
+      {status ? (
+        <AlertMessage
+          severity={status.severity}
+          message={status.msg}
+          key={status.key}
+        />
+      ) : null}
     </Box>
   );
 };

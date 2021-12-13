@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import AlertMessage from "../AlertMessage";
 
 const authToken = localStorage.getItem("auth_token");
 
 export const PostForm = () => {
   const [post, setPost] = useState({});
+  const [status, setStatus] = useState(null);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -23,13 +25,20 @@ export const PostForm = () => {
           Authorization: "Bearer " + authToken,
         },
       }).then((res) => {
-        document.getElementById("alertState").innerHTML = "Success!";
+        setStatus({
+          msg: "Post added!",
+          severity: "success",
+          key: Math.random(),
+        });
         document.getElementById("post-form").value = "";
         window.location.reload(false);
       });
     } else {
-      document.getElementById("alertState").innerHTML =
-        "Write something first!";
+      setStatus({
+        msg: "Write a post first!",
+        severity: "error",
+        key: Math.random(),
+      });
     }
   }
   if (authToken) {
@@ -83,7 +92,13 @@ export const PostForm = () => {
             Submit
           </Button>
         </form>
-        <div id="alertState"></div>
+        {status ? (
+          <AlertMessage
+            severity={status.severity}
+            message={status.msg}
+            key={status.key}
+          />
+        ) : null}
       </div>
     );
   } else {

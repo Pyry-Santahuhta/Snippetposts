@@ -30,14 +30,22 @@ export const AddComment = (props) => {
       }).then((res) => {
         res.json().then((data) => {
           if (data.success) {
-            setStatus({ msg: "Comment posted!", severity: "success" });
+            setStatus({
+              msg: "Comment posted!",
+              severity: "success",
+              key: Math.random(),
+            });
             document.getElementById("content").value = "";
             window.location.reload(false);
           }
         });
       });
     } else {
-      setStatus({ msg: "Write a comment first!", severity: "error" });
+      setStatus({
+        msg: "Write a comment first!",
+        severity: "error",
+        key: Math.random(),
+      });
     }
   }
 
@@ -67,7 +75,7 @@ export const AddComment = (props) => {
           <AlertMessage
             severity={status.severity}
             message={status.msg}
-            open={true}
+            key={status.key}
           />
         ) : null}
       </div>
