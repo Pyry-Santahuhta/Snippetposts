@@ -16,9 +16,10 @@ function App() {
     //Setting the theme for the whole app by wrapping the main box in a themeprovider
     <ThemeProvider theme={theme}>
       {/*Box that holds the whole page. 
-      The background color is set here.*/}
+      The background color and the text color is set here.*/}
       <Box
         sx={{
+          color: "primary.contrastText",
           bgcolor: "primary.background",
           width: "100%",
           minHeight: "100vh",

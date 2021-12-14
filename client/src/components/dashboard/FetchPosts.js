@@ -4,12 +4,14 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
-import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import Cached from "@mui/icons-material/Cached";
 
+import Typography from "@mui/material/Typography";
 import * as hljs from "highlight.js";
+
 import useStyles from "../materialui/Styles";
 import SearchPosts from "./SearchPosts";
-import Likes from "../Likes";
 
 class FetchPostsClass extends React.Component {
   state = {
@@ -17,6 +19,7 @@ class FetchPostsClass extends React.Component {
   };
 
   setPosts(postData) {
+    console.log("setting posts");
     if (postData.length > 0) this.setState({ posts: postData });
 
     const codeBlocks = document.getElementsByClassName("code");
@@ -25,7 +28,7 @@ class FetchPostsClass extends React.Component {
     }
   }
 
-  async componentDidMount() {
+  async fetchPosts() {
     const response = await fetch("/posts/", {
       method: "GET",
       headers: {
@@ -36,18 +39,28 @@ class FetchPostsClass extends React.Component {
     const postData = await response.json();
     this.setPosts(postData);
   }
+  async componentDidMount() {
+    await this.fetchPosts();
+  }
   render() {
     const { navigate } = this.props;
     const { classes } = this.props;
 
     return (
       <div>
+        <IconButton
+          onClick={() => {
+            this.fetchPosts();
+          }}
+          aria-label="Cached"
+        >
+          <Cached />
+        </IconButton>
         <SearchPosts
           setPosts={(data) => {
             this.setPosts(data);
           }}
         ></SearchPosts>
-
         {!this.state.posts ? (
           <div>No posts found</div>
         ) : (
@@ -93,7 +106,6 @@ class FetchPostsClass extends React.Component {
                           </Typography>
                         }
                       />
-                      {/* <Likes post={post} id={post._id} />*/}
                     </ListItem>
                     <Divider
                       variant="inset"
