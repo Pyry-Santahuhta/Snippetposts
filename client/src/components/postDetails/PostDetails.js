@@ -16,6 +16,10 @@ class PostDetailsClass extends React.Component {
   };
   async componentDidMount() {
     const { id } = this.props;
+    this.fetchPostAndHighlight(id);
+  }
+
+  async fetchPostAndHighlight(id) {
     const response = await fetch("/posts/" + id, {
       method: "GET",
       headers: {
@@ -55,7 +59,12 @@ class PostDetailsClass extends React.Component {
               </Typography>
               <Likes post={post} id={id} />
             </Box>
-            <AddComment id={id}></AddComment>
+            <AddComment
+              id={id}
+              fetchPostAndHighlight={(data) => {
+                this.fetchPostAndHighlight(data);
+              }}
+            ></AddComment>
             {post.comments
               ? post.comments.map((comment, index) => {
                   return (

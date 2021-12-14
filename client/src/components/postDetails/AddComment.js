@@ -36,7 +36,7 @@ export const AddComment = (props) => {
               key: Math.random(),
             });
             document.getElementById("content").value = "";
-            window.location.reload(false);
+            props.fetchPostAndHighlight(id);
           }
         });
       });

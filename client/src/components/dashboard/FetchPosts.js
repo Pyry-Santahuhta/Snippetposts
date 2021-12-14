@@ -93,7 +93,7 @@ class FetchPostsClass extends React.Component {
                           </Typography>
                         }
                       />
-                      <Likes post={post} id={post._id} />
+                      {/* <Likes post={post} id={post._id} />*/}
                     </ListItem>
                     <Divider
                       variant="inset"
