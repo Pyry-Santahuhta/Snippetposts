@@ -34,8 +34,8 @@ export const NavBar = () => {
   }, []);
 
   return (
+    /* If the user is logged in, return navbar with logout button. */
     <div>
-      {/* If the user is logged in, return navbar with logout button and if the user isn't return navbar with register and login buttons */}
       {loggedIn ? (
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
@@ -48,7 +48,7 @@ export const NavBar = () => {
                 direction={largeScreen ? "row" : "column"}
               >
                 <Grid item>
-                  {/* Title which is also a button */}
+                  {/* Title which is also a button that takes you to the homepage */}
                   <Button color="secondary" onClick={goHome} type="button">
                     <Typography
                       className={classes.title}
@@ -74,6 +74,7 @@ export const NavBar = () => {
           </AppBar>
         </Box>
       ) : (
+        /* If the user isn't logged in, return a navbar with login and register buttons. */
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
