@@ -6,21 +6,29 @@ import Box from "@mui/material/Box";
 import useStyles from "../materialui/Styles";
 import AlertMessage from "../AlertMessage";
 
+//Component to login users
 export const Login = () => {
+  //User is set unto this state.
   const [user, setUsers] = useState(null);
+  //Classes to get styles.
   const classes = useStyles();
+  //Status is used for snackbar alert messages.
   const [status, setStatus] = useState(null);
 
   const navigate = useNavigate();
 
+  //When data is changed in the form, get the name and value of the change and append or update them onto the user state.
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
     setUsers((values) => ({ ...values, [name]: value }));
   }
+
+  //Login button is pressed.
   function handleSubmit(event) {
     event.preventDefault();
 
+    //Check that all necessary fields are filled, if not, show an alert error.
     if (!user || !user.email || !user.password) {
       setStatus({
         msg: "Write your credentials first!",
@@ -30,6 +38,7 @@ export const Login = () => {
       return;
     }
 
+    //Send the post request to login the user.
     fetch("/users/login/", {
       method: "POST",
       body: JSON.stringify(user),
@@ -38,12 +47,16 @@ export const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          //Save the token from the response to local storage.
           localStorage.setItem("auth_token", data.token);
           navigate("/");
+          //Reload the page so that elements that need the authToken recognize it has been set.
           window.location.reload(false);
-        }
-        if (data.msg) {
-          setStatus({ msg: data.msg, severity: "error", key: Math.random() });
+        } else {
+          //Set alert status as an error if something went wrong.
+          if (data.msg) {
+            setStatus({ msg: data.msg, severity: "error", key: Math.random() });
+          }
         }
       });
   }

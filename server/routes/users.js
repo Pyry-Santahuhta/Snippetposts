@@ -82,12 +82,12 @@ router.post(
     //Look if an user with this email already exists.
     User.findOne({ email: req.body.email }, (err, user) => {
       if (err) {
-        throw err;
+        next(err);
       }
       if (user) {
         return res.status(403).json({ msg: "Email already in use" });
       } else {
-        //Create user and respond with success status
+        //Create user using the model's addUser function and respond with success status
         User.addUser(newUser, (err, user) => {
           if (err) {
             res.json({ success: false, msg: "User not created" });

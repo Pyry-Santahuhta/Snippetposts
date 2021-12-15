@@ -12,7 +12,7 @@ export const PostForm = () => {
   //Status is used for snackbar alert messages.
   const [status, setStatus] = useState(null);
 
-  //When data is changed in the form, get the name and value and append or update them onto the post state.
+  //When data is changed in the form, get the name and value of the change and append or update them onto the post state.
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
@@ -32,26 +32,23 @@ export const PostForm = () => {
           "Content-Type": "application/json",
           Authorization: "Bearer " + authToken,
         },
-      }).then((res) => {
-        //If post was added succesfully, set alert, empty the form and reload the page to show the new post.
-        if (res.success) {
-          setStatus({
-            msg: "Post added!",
-            severity: "success",
-            key: Math.random(),
-          });
-          document.getElementById("post-form").value = "";
-          window.location.reload(false);
-        }
-        //If post was not added succesfully, set an alert showing an error.
-        else {
-          setStatus({
-            msg: res.msg,
-            severity: "error",
-            key: Math.random(),
-          });
-        }
-      });
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          //If post was added succesfully, set alert, empty the form and reload the page to show the new post.
+          if (data.success) {
+            document.getElementById("post-form").value = "";
+            window.location.reload(false);
+          }
+          //If post was not added succesfully, set an alert showing an error.
+          else {
+            setStatus({
+              msg: data.msg,
+              severity: "error",
+              key: Math.random(),
+            });
+          }
+        });
     }
     //The user hadn't filled some part of the form so set an alert showing an error.
     else {

@@ -6,12 +6,14 @@ import Grid from "@mui/material/Grid";
 import useStyles from "../materialui/Styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+//Main dashboard component that holds the posts and the PostForm
 export const Dashboard = () => {
   const classes = useStyles();
   const largeScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
   return (
     <Box className={classes.dashBoardBox}>
+      {/* On small screens turn the direction into the column so users can just scroll down */}
       <Grid direction={largeScreen ? "row" : "column"} container spacing={1}>
         <Grid className={classes.fetchPosts} item xs={6}>
           <FetchPosts></FetchPosts>

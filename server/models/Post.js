@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const Schema = mongoose.Schema;
 
+//Mongoose schema for a post
 let postSchema = new Schema(
   {
     title: { type: String, required: true },
@@ -18,6 +19,7 @@ let postSchema = new Schema(
 
 module.exports = mongoose.model("posts", postSchema);
 
+//Save a new post in the database and send a callback with the status to the calling function.
 module.exports.addPost = function (newPost, callback) {
   newPost.save(callback);
 };

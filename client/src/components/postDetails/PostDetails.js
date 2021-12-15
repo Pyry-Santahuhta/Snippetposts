@@ -13,7 +13,7 @@ import Likes from "../Likes";
 class PostDetailsClass extends React.Component {
   //State to hold the post, updating the page when the state changes.
   state = {
-    post: {},
+    post: null,
   };
 
   //On component mounting, fetch the post by id and highlight it.
@@ -48,8 +48,8 @@ class PostDetailsClass extends React.Component {
     return (
       <div>
         {
-          //Object.keys is just used to see if object is empty, if it is return just the div
-          Object.keys(this.state.post).length === 0 ? (
+          //Check if the post is null, if it is return just the div
+          !this.state.post ? (
             <div>No post found</div>
           ) : (
             //If post is found return details.
@@ -94,10 +94,13 @@ class PostDetailsClass extends React.Component {
                           <Grid className={classes.postInfo} container>
                             <Grid item xs={1} color="secondary">
                               <Typography>
-                                {comment.user.substring(
-                                  0,
-                                  comment.user.indexOf("@")
-                                )}
+                                {
+                                  //Remove everything after @ to make a username.
+                                  comment.user.substring(
+                                    0,
+                                    comment.user.indexOf("@")
+                                  )
+                                }
                               </Typography>
                             </Grid>
                             <Grid item xs={8} color="secondary">
@@ -121,7 +124,7 @@ class PostDetailsClass extends React.Component {
   }
 }
 
-//Export a function component that returns the postDetailsClass to use props easier with class components.
+//Export as a function component so we can use import functions. Send them as props to the PropsDetailsClass which is returned here.
 export default function PostDetails(props) {
   const { id } = useParams();
   const classes = useStyles();
