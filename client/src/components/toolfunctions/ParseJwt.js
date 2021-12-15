@@ -1,4 +1,5 @@
-//Jwt parsing function from this source:
+//Jwt parsing function that is used to parse user info from jwt token
+//From this source:
 //https://stackoverflow.com/questions/54036341/how-to-get-user-information-from-jwt-cookie-in-nextjs-reactjs
 
 function ParseJwt(token) {

@@ -7,18 +7,26 @@ import AlertMessage from "../AlertMessage";
 const authToken = localStorage.getItem("auth_token");
 
 export const AddComment = (props) => {
+  //Use a state to hold the comment.
   const [comment, setComment] = useState({});
+  //Status is used for snackbar alert messages.
   const [status, setStatus] = useState(null);
   const classes = useStyles();
 
+  //Get post id from props
   const { id } = props;
+
+  //When data is changed in the form, get the name and value and append or update them onto the comment state.
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
     setComment((values) => ({ ...values, [name]: value }));
   }
+
+  //Add comment button is pressed
   function handleSubmit(event) {
     event.preventDefault();
+    //If user is logged in and comment is not empty, send a POST request with the comment to the back end.
     if (authToken && comment.content) {
       fetch("/posts/comment/" + id, {
         method: "POST",
@@ -29,18 +37,21 @@ export const AddComment = (props) => {
         },
       }).then((res) => {
         res.json().then((data) => {
+          //If comment was posted succesfully, set alert to show a success message.
           if (data.success) {
             setStatus({
               msg: "Comment posted!",
               severity: "success",
               key: Math.random(),
             });
+            //Empty the add comment field and fetch the post again to show the new comment.
             document.getElementById("content").value = "";
             props.fetchPostAndHighlight(id);
           }
         });
       });
     } else {
+      //User didn't write a comment before submitting so set an alert to show a error message.
       setStatus({
         msg: "Write a comment first!",
         severity: "error",
@@ -49,6 +60,7 @@ export const AddComment = (props) => {
     }
   }
 
+  //Only show the add comment area if user is logged in.
   if (authToken) {
     return (
       <div>
@@ -71,16 +83,20 @@ export const AddComment = (props) => {
         >
           comment
         </Button>
-        {status ? (
-          <AlertMessage
-            severity={status.severity}
-            message={status.msg}
-            key={status.key}
-          />
-        ) : null}
+        {
+          //Showing the alert messages.
+          status ? (
+            <AlertMessage
+              severity={status.severity}
+              message={status.msg}
+              key={status.key}
+            />
+          ) : null
+        }
       </div>
     );
   } else {
+    //Return empty div if user isn't logged in.
     return <div></div>;
   }
 };

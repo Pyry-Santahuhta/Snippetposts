@@ -132,7 +132,7 @@ export const Likes = (props) => {
       </Grid>
     );
   } else {
-    //If the user isn't logged in just shoow the amount of likes.
+    //If the user isn't logged in just show the amount of likes.
     return (
       <Grid container className={classes.likesGrid}>
         <Grid item>Likes: {displayableVotes}</Grid>

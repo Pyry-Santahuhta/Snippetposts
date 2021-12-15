@@ -4,8 +4,11 @@ import useStyles from "../materialui/Styles";
 import TextField from "@mui/material/TextField";
 import AlertMessage from "../AlertMessage";
 
+//Search posts component
 export const SearchPosts = (props) => {
+  //Classes to set the styles
   const classes = useStyles();
+  //Status is used for snackbar alert messages.
   const [status, setStatus] = useState(null);
 
   return (
@@ -18,11 +21,12 @@ export const SearchPosts = (props) => {
         InputProps={{
           endAdornment: <Search />,
         }}
+        //On key press in the text field check if it was enter.
         onKeyPress={async function search(e) {
           if (e.key === "Enter") {
             e.preventDefault();
+            //Search with the textfield value from the backend and de-select the textfield.
             const searchTerm = e.target.value;
-            e.target.value = "";
             e.target.blur();
             const response = await fetch("/posts/search/" + searchTerm, {
               method: "GET",
@@ -30,26 +34,31 @@ export const SearchPosts = (props) => {
                 "Content-Type": "application/json",
               },
             });
-            const postData = await response.json();
+            const searchResults = await response.json();
 
-            if (postData.length === 0) {
+            //If no posts were found, set a alert message.
+            if (searchResults.length === 0) {
               setStatus({
                 msg: "No posts found with those keywords",
                 severity: "error",
                 key: Math.random(),
               });
             }
-            props.setPosts(postData);
+            //Use the setPosts function from fetchPosts to set the posts with the searchresults.
+            props.setPosts(searchResults);
           }
         }}
       />
-      {status ? (
-        <AlertMessage
-          severity={status.severity}
-          message={status.msg}
-          key={status.key}
-        />
-      ) : null}
+      {
+        //Showing the alert messages.
+        status ? (
+          <AlertMessage
+            severity={status.severity}
+            message={status.msg}
+            key={status.key}
+          />
+        ) : null
+      }
     </div>
   );
 };

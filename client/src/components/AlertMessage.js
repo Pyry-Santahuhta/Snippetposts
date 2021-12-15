@@ -34,7 +34,7 @@ export default function AlertMessage(props) {
           severity={props.severity}
           sx={{ width: "100%" }}
         >
-          {/* get the alert message from props */}
+          {/* get the alert message from props. */}
           {props.message}
         </Alert>
       </Snackbar>

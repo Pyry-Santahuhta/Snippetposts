@@ -5,18 +5,26 @@ import AlertMessage from "../AlertMessage";
 
 const authToken = localStorage.getItem("auth_token");
 
+//Component to send new posts.
 export const PostForm = () => {
+  //Hold the post in the post state.
   const [post, setPost] = useState({});
+  //Status is used for snackbar alert messages.
   const [status, setStatus] = useState(null);
 
+  //When data is changed in the form, get the name and value and append or update them onto the post state.
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
     setPost((values) => ({ ...values, [name]: value }));
   }
+
+  //Submit post button is pressed
   function handleSubmit(event) {
     event.preventDefault();
+    //Check that user is logged in and all the required fields are filled.
     if (authToken && post.code && post.description && post.title) {
+      //Send a POST request with the new post.
       fetch("/posts/", {
         method: "POST",
         body: JSON.stringify(post),
@@ -25,15 +33,28 @@ export const PostForm = () => {
           Authorization: "Bearer " + authToken,
         },
       }).then((res) => {
-        setStatus({
-          msg: "Post added!",
-          severity: "success",
-          key: Math.random(),
-        });
-        document.getElementById("post-form").value = "";
-        window.location.reload(false);
+        //If post was added succesfully, set alert, empty the form and reload the page to show the new post.
+        if (res.success) {
+          setStatus({
+            msg: "Post added!",
+            severity: "success",
+            key: Math.random(),
+          });
+          document.getElementById("post-form").value = "";
+          window.location.reload(false);
+        }
+        //If post was not added succesfully, set an alert showing an error.
+        else {
+          setStatus({
+            msg: res.msg,
+            severity: "error",
+            key: Math.random(),
+          });
+        }
       });
-    } else {
+    }
+    //The user hadn't filled some part of the form so set an alert showing an error.
+    else {
       setStatus({
         msg: "Write a post first!",
         severity: "error",
@@ -41,6 +62,7 @@ export const PostForm = () => {
       });
     }
   }
+  //If user is logged in show the post form
   if (authToken) {
     return (
       <div>
@@ -92,16 +114,20 @@ export const PostForm = () => {
             Submit
           </Button>
         </form>
-        {status ? (
-          <AlertMessage
-            severity={status.severity}
-            message={status.msg}
-            key={status.key}
-          />
-        ) : null}
+        {
+          //Showing the alert messages.
+          status ? (
+            <AlertMessage
+              severity={status.severity}
+              message={status.msg}
+              key={status.key}
+            />
+          ) : null
+        }
       </div>
     );
   } else {
+    //Return empty div if user isn't logged in.
     return <div></div>;
   }
 };
