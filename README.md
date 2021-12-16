@@ -7,12 +7,14 @@ To start, create a .env file containing some secret=somesecret and NODE_ENV=prod
 This is not tracked to github because it contains the secret that is used for the jwt tokens of the users.
 
 To run in development environment, change NODE_ENV to development and run the following commands in the project folder:
-npm run dev:client
-npm run dev:server
+
+- npm run dev:client
+- npm run dev:server
 
 To create a production build, change NODE_ENV to production and run the following commands in the project folder:
-npm run build
-npm run start
+
+- npm run build
+- npm run start
 
 Done features and number of points suggested for the project:
 
