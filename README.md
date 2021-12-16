@@ -15,16 +15,18 @@ npm run build
 npm run start
 
 Done features and number of points suggested for the project:
-Basic features with well written documentation. - 25
-Utilization of a front end framework: React. - 5
-Utlization of a highlight library: Highlightjs. - 2
-A search that can filter out only those messages that have the searched keyword. - 2
-Vote (up or down) posts and comments (only one vote per user). - 3
-Last edited timestamp is stored and shown with posts/comments. - 2
+
+- Basic features with well written documentation. - 25
+- Utilization of a front end framework: React. - 5
+- Utlization of a highlight library: Highlightjs. - 2
+- A search that can filter out only those messages that have the searched keyword. - 2
+- Vote (up or down) posts and comments (only one vote per user). - 3
+- Last edited timestamp is stored and shown with posts/comments. - 1
 
 My own features:
-Passwords must be strong and are hashed/salted in the back-end. - 1
-Changing project theme is easy with the materialui Theme file. - 1
-Alerts for users on errors or successes - 2
 
-Total points: 43
+- Passwords must be strong and are hashed/salted in the back-end. - 1
+- Changing project theme is easy with the materialui Theme file. - 1
+- Alerts for users on errors or successes - 2
+
+Total points: 42
