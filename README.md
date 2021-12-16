@@ -30,5 +30,6 @@ My own features:
 - Passwords must be strong and are hashed/salted in the back-end. - 1
 - Changing project theme is easy with the materialui Theme file. - 1
 - Alerts for users on errors or successes - 2
+- User is directed to 404 page on all pages that are not specified - 1
 
-Total points: 42
+Total points: 43
