@@ -9,9 +9,7 @@
     "dev:server": "cd server && npm run dev",
     "preinstall": "cd server && npm install",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "setDevelopment": "NODE_ENV=development node app.js",
-    "setProduction": "NODE_ENV=production node app.js"
+    "build": "cd client && npm run build"
   },
   "author": "Pyry Santahuhta",
   "license": "ISC",
