@@ -15,10 +15,9 @@ Example dotenv content:
 
 This file is not tracked to github because it contains the secret that is used for the jwt tokens of the users.
 
-After setting the values, you will need to install the dependency packages. Run the following commands in the root directory, and wait for the install to finish on each one:
+After setting the values, you will need to install the dependency packages. Run the following command in the root directory, and wait for the install to finish.
 
-- npm run preinstall
-- npm run install
+- npm install
 
 After installing:
 To run in development environment, change NODE_ENV to development and run the following commands in the project directory:
